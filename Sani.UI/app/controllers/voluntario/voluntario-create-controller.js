@@ -8,12 +8,8 @@
         var vm = this;
         vm.voluntarios = [];
         vm.voluntario = {
-            description: '',
-            price: 0,
-            image: '',
-            quantityOnHand: 0
+            nome: '',
         };
-        vm.croppedImage = '';
         vm.save = save;
 
         /*activate();
@@ -45,7 +41,7 @@
                 .catch(fail);
 
             function success(response) {
-                toastr.success('Vaga <strong>' + response.description + '</strong> cadastrada com sucesso', 'Vaga Cadastrada');
+                toastr.success('Voluntário <strong>' + response.name + '</strong> cadastrado com sucesso', 'Voluntário Cadastrado');
                 $location.path('/voluntarios');
             }
 

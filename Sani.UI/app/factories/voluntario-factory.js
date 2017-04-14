@@ -15,11 +15,11 @@
         }
 
         function get() {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/apoiadores', $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + 'api/voluntarios', $rootScope.header);
         }
 
         function getById(id) {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/apoiadores/' + id, $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + 'api/voluntarios/' + id, $rootScope.header);
         }
 
         function post(apoiador) {
