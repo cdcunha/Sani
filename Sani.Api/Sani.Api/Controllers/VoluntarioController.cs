@@ -20,20 +20,20 @@ namespace Sani.Api.Controllers
                 .SortBy(it => it.Nome).Skip(0).Limit(50);
             if (!resultado.Any())
             {
-                Apoiador n = new Apoiador("dr. José Maria");
+                Voluntario n = new Voluntario("dr. José Maria");
                 apoiados.InsertOne(n);
 
-                n = new Apoiador("dr. José Pedro");
+                n = new Voluntario("dr. José Pedro");
                 apoiados.InsertOne(n);
 
-                n = new Apoiador("dr. Carlos José");
+                n = new Voluntario("dr. Carlos José");
                 n.Nome = "Monitor";
                 apoiados.InsertOne(n);
 
-                n = new Apoiador("dra. Marilda Abravanel");
+                n = new Voluntario("dra. Marilda Abravanel");
                 apoiados.InsertOne(n);
 
-                n = new Apoiador("dr. Nivaldo Damasceno");
+                n = new Voluntario("dr. Nivaldo Damasceno");
                 apoiados.InsertOne(n);
             }
             return resultado.ToList();
