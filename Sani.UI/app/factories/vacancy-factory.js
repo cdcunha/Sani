@@ -1,13 +1,13 @@
 ﻿(function () {
     'use strict';
 
-    var SETTINGS = { 'SERVICE_URL': 'http://localhost:5322/' };
+    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
 
-    angular.module('db1.avaliacao.tecnica').factory('VacancyFactory', VacancyFactory);
+    angular.module('sani').factory('ApoiadorFactory', ApoiadorFactory);
 
-    //VacancyFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
+    //ApoiadorFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
 
-    function VacancyFactory($http, $rootScope) {
+    function ApoiadorFactory($http, $rootScope) {
         return {
             get: get,
             getById: getById,
@@ -15,16 +15,16 @@
         }
 
         function get() {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/vacancies', $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + 'api/apoiadores', $rootScope.header);
         }
 
         function getById(id) {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/vacancies/' + id, $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + 'api/apoiadores/' + id, $rootScope.header);
         }
 
-        function post(vacancy) {
-            console.log(vacancy);
-            return $http.post(SETTINGS.SERVICE_URL + 'api/vacancies', vacancy, $rootScope.header);
+        function post(apoiador) {
+            console.log(apoiador);
+            return $http.post(SETTINGS.SERVICE_URL + 'api/apoiadores', vacancy, $rootScope.header);
         }
     }
 })();

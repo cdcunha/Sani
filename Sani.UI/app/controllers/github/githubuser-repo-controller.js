@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('db1.avaliacao.tecnica').controller('GitHubUserRepoCtrl', function ($rootScope, $location, $http, $routeParams) {
+    angular.module('sani').controller('GitHubUserRepoCtrl', function ($rootScope, $location, $http, $routeParams) {
         $rootScope.loading = true;
         $rootScope.RepoNotFound = false;
         $rootScope.activetab = $location.path();

@@ -1,8 +1,8 @@
 ﻿(function () {
     'use strict';
 
-    SETTINGS = { 'SERVICE_URL': 'http://localhost:5322/' };
+    SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
 
-    angular.module('db1.avaliacao.tecnica').constant('SETTINGS', SETTINGS);
+    angular.module('sani').constant('SETTINGS', SETTINGS);
 
 })

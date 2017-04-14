@@ -1,34 +1,34 @@
 ﻿(function () {
     'use strict';
-    angular.module('db1.avaliacao.tecnica').controller('TechnologyCtrl', TechnologyCtrl);
+    angular.module('sani').controller('ApoiadoCtrl', ApoiadoCtrl);
 
-    TechnologyCtrl.$inject = ['TechnologyFactory'];
+    ApoiadoCtrl.$inject = ['ApoiadoFactory'];
 
-    function TechnologyCtrl(TechnologyFactory) {
+    function ApoiadoCtrl(ApoiadoFactory) {
         var vm = this;
-        vm.technologies = [];
-        vm.technology = {
+        vm.apoiados = [];
+        vm.apoiado = {
             id: 0,
-            description: ''
+            nome: ''
         };
-        vm.saveTechnology = saveTechnology;
-        vm.loadTechnology = loadTechnology;
+        vm.saveApoiado = saveApoiado;
+        vm.loadApoiado = loadApoiado;
         vm.cancel = cancel;
-        vm.removeTechnology = removeTechnology;
+        vm.removeApoiado = removeApoiado;
 
         activate();
 
         function activate() {
-            getTechnologies();
+            getApoiados();
         }
 
-        function getTechnologies() {
-            TechnologyFactory.get()
+        function getApoiados() {
+            ApoiadoFactory.get()
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                vm.technologies = response;
+                vm.apoiados = response;
             }
 
             function fail(error) {
@@ -43,21 +43,21 @@
             }
         }
 
-        function saveTechnology() {
-            if (vm.technology.id == 0) {
-                addTechnology();
+        function saveApoiado() {
+            if (vm.apoiado.id == 0) {
+                addApoiado();
             } else {
-                updateTechnology();
+                updateApoiado();
             }
         }
 
-        function addTechnology() {
-            TechnologyFactory.post(vm.technology)
+        function addApoiado() {
+            ApoiadoFactory.post(vm.apoiado)
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                vm.technologies.push(response);
+                vm.apoiados.push(response);
             }
 
             function fail(error) {
@@ -66,16 +66,16 @@
                     toastr.error(erros[i].value, 'Falha na Requisição')
                 }
             }
-            clearTechnology();
+            clearApoiado();
         }
 
-        function updateTechnology() {
-            TechnologyFactory.put(vm.technology)
+        function updateApoiado() {
+            ApoiadoFactory.put(vm.apoiado)
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                toastr.success('Tecnologia <strong>' + response.description + '</strong> alterada com sucesso', 'Sucesso');
+                toastr.success('Apoiado <strong>' + response.nome + '</strong> alterada com sucesso', 'Sucesso');
             }
 
             function fail(error) {
@@ -84,19 +84,19 @@
                     toastr.error(erros[i].value, 'Falha na Requisição')
                 }
             }
-            clearTechnology();
+            clearApoiado();
         }
 
-        function removeTechnology(technology) {
-            loadTechnology(technology);
-            TechnologyFactory.remove(vm.technology)
+        function removeApoiado(apoiado) {
+            loadApoiado(apoiado);
+            ApoiadoFactory.remove(vm.apoiado)
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                toastr.success('Tecnologia <strong>' + response.description + '</strong> removida com sucesso', 'Sucesso');
-                var index = vm.technologies.indexOf(technology);
-                vm.technologies.splice(index, 1);
+                toastr.success('Apoiado <strong>' + response.name + '</strong> removida com sucesso', 'Sucesso');
+                var index = vm.apoiados.indexOf(apoiado);
+                vm.apoiados.splice(index, 1);
             }
 
             function fail(error) {
@@ -106,21 +106,21 @@
                 }
             }
 
-            clearTechnology();
+            clearApoiado();
         }
 
-        function loadTechnology(technology) {
-            vm.technology = technology;
+        function loadApoiado(apoiado) {
+            vm.apoiado = apoiado;
         }
 
         function cancel() {
-            clearTechnology();
+            clearApoiado();
         }
 
-        function clearTechnology() {
-            vm.technology = {
+        function clearApoiado() {
+            vm.apoiado = {
                 id: 0,
-                description: ''
+                name: ''
             };
         }
     };

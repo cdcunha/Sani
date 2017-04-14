@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace Sani_api.Models
 {
     [DataContract]
-    public class Necessitado
+    public class Apoiado
     {
         [DataMember]
         [BsonId(IdGenerator = typeof(GuidGenerator))]
@@ -71,7 +71,7 @@ namespace Sani_api.Models
         public System.DateTime? DataAlteracao { get; set; }
 
         [BsonConstructor]
-        public Necessitado(string nome)
+        public Apoiado(string nome)
         {
             Nome = nome;
             DataCriacao = System.DateTime.Now;

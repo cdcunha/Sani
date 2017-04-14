@@ -1,28 +1,26 @@
 ﻿(function () {
     'use strict';
-    angular.module('db1.avaliacao.tecnica').controller('VacancyEditCtrl', VacancyEditCtrl);
+    angular.module('sani').controller('ApoiadorListCtrl', ApoiadorListCtrl);
 
-    VacancyEditCtrl.$inject = ['$routeParams', 'VacancyFactory'];
+    ApoiadorListCtrl.$inject = ['ApoiadorFactory'];
 
-    function VacancyEditCtrl($routeParams, VacancyFactory) {
+    function ApoiadorListCtrl(ApoiadorFactory) {
         var vm = this;
-        var id = $routeParams.id;
-
-        vm.vacancy = {};
+        vm.apoiadores = [];
 
         activate();
 
         function activate() {
-            getVacancy();
+            getVacancies();
         }
 
-        function getVacancy() {
-            VacancyFactory.getById(id)
+        function getVacancies() {
+            ApoiadorFactory.get()
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                vm.vacancy = response;
+                vm.apoiadores = response;
             }
 
             function fail(error) {

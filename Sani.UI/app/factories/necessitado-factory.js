@@ -1,13 +1,13 @@
 ﻿(function () {
     'use strict';
-    var SETTINGS = { 'SERVICE_URL': 'http://localhost:5322/' };
+    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
 
-    angular.module('db1.avaliacao.tecnica').factory('TechnologyFactory', TechnologyFactory);
+    angular.module('sani').factory('ApoiadoFactory', ApoiadoFactory);
 
-    //TechnologyFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
+    //ApoiadoFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
 
-    //function TechnologyFactory($http, $rootScope, SETTINGS) {
-    function TechnologyFactory($http, $rootScope) {
+    //function ApoiadoFactory($http, $rootScope, SETTINGS) {
+    function ApoiadoFactory($http, $rootScope) {
         return {
             get: get,
             post: post,
@@ -16,19 +16,19 @@
         }
 
         function get() {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/technologies', $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + 'api/Apoiado', $rootScope.header);
         }
 
-        function post(technology) {
-            return $http.post(SETTINGS.SERVICE_URL + 'api/technologies', technology, $rootScope.header);
+        function post(apoiado) {
+            return $http.post(SETTINGS.SERVICE_URL + 'api/Apoiado', apoiado, $rootScope.header);
         }
 
-        function put(technology) {
-            return $http.put(SETTINGS.SERVICE_URL + 'api/technologies/' + technology.id, technology, $rootScope.header);
+        function put(apoiado) {
+            return $http.put(SETTINGS.SERVICE_URL + 'api/Apoiado/' + apoiado.id, apoiado, $rootScope.header);
         }
 
-        function remove(technology) {
-            return $http.delete(SETTINGS.SERVICE_URL + 'api/technologies/' + technology.id, $rootScope.header);
+        function remove(apoiado) {
+            return $http.delete(SETTINGS.SERVICE_URL + 'api/Apoiado/' + apoiado.id, $rootScope.header);
         }
     }
 })();

@@ -1,4 +1,4 @@
-﻿angular.module('db1.avaliacao.tecnica')
+﻿angular.module('sani')
     .config([
         '$routeProvider', function($routeProvider) {
             $routeProvider
@@ -15,35 +15,35 @@
                 controller: 'GitHubUserRepoCtrl'
             })
             /****************************************
-            * Tecnologia
+            * Apoiado/Apoiado
             *****************************************/
-            .when('/technologies', {
-                controller: 'TechnologyCtrl',
+            .when('/apoiados', {
+                controller: 'ApoiadoCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/technology/index.html'
+                templateUrl: 'app/templates/apoiado/index.html'
             })
             /****************************************
             * Vaga
             *****************************************/
-            .when('/vacancies', {
-                controller: 'VacancyListCtrl',
+            .when('/apoiadores', {
+                controller: 'ApoiadorListCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/vacancy/index.html'
+                templateUrl: 'app/templates/apoiador/index.html'
             })
-            .when('/vacancies/create', {
-                controller: 'VacancyCreateCtrl',
+            .when('/apoiadores/create', {
+                controller: 'ApoiadorCreateCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/vacancy/create.html'
+                templateUrl: 'app/templates/apoiador/create.html'
             })
-            .when('/vacancies/edit/:id', {
-                controller: 'VacancyEditCtrl',
+            .when('/apoiadores/edit/:id', {
+                controller: 'ApoiadorEditCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/vacancy/edit.html'
+                templateUrl: 'app/templates/apoiador/edit.html'
             })
-            .when('/vacancies/remove/:id', {
-                controller: 'VacancyRemoveCtrl',
+            .when('/apoiadores/remove/:id', {
+                controller: 'ApoiadorRemoveCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/vacancy/edit.html'
+                templateUrl: 'app/templates/apoiador/edit.html'
             })
             .otherwise({
                 redirectTo: '/'

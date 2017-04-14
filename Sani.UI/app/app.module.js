@@ -1,8 +1,8 @@
-﻿angular.module('db1.avaliacao.tecnica',
+﻿angular.module('sani',
 [
     'ngRoute'
 ]);
 
 angular.element(document).ready(function () {
-    angular.bootstrap(document, ['db1.avaliacao.tecnica']);
+    angular.bootstrap(document, ['sani']);
 });

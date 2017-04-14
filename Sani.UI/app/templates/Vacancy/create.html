@@ -4,7 +4,7 @@
     <div class="row content">
         <div class="form-group">
             <label>Descrição</label>
-            <input ng-model="vm.vacancy.description"
+            <input ng-model="vm.apoiador.description"
                    type="text"
                    class="form-control"
                    required />
@@ -14,7 +14,7 @@
     <!--
     <div class="form-group">
         <label>Tecnologias</label>
-        <select ng-model="vm.vacancy.technology" class="form-control">
+        <select ng-model="vm.apoiador.technology" class="form-control">
             <option value="{{ technology.id }}" ng-repeat="technology in vm.technologies">{{ technology.description }}</option>
         </select>
     </div>
@@ -32,6 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!--
                     <tr ng-repeat="technology in vm.technologies">
                         <td class="text-center">{{ technology.id }}</td>
                         <td>{{ technology.description }}</td>
@@ -42,6 +43,7 @@
                             </div>
                         </td>
                     </tr>
+                        -->
                 </tbody>
             </table>
         </div>

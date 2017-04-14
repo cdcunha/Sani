@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('db1.avaliacao.tecnica').controller('GitHubUserDetCtrl', function ($rootScope, $location, $http, $routeParams) {
+    angular.module('sani').controller('GitHubUserDetCtrl', function ($rootScope, $location, $http, $routeParams) {
         $rootScope.loading = true;
         $rootScope.userNotFound = false;
         $rootScope.activetab = $location.path();
