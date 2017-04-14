@@ -1,10 +1,10 @@
-﻿<h3>Nova Vaga</h3>
+﻿<h3>Novo Voluntário</h3>
 
 <div class="container-fluid">
     <div class="row content">
         <div class="form-group">
             <label>Descrição</label>
-            <input ng-model="vm.apoiador.description"
+            <input ng-model="vm.voluntario.description"
                    type="text"
                    class="form-control"
                    required />
@@ -14,7 +14,7 @@
     <!--
     <div class="form-group">
         <label>Tecnologias</label>
-        <select ng-model="vm.apoiador.technology" class="form-control">
+        <select ng-model="vm.voluntario.technology" class="form-control">
             <option value="{{ technology.id }}" ng-repeat="technology in vm.technologies">{{ technology.description }}</option>
         </select>
     </div>
@@ -27,30 +27,28 @@
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">Tecnologia</th>
+                        <th class="text-center">Profissional</th>
                         <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!--
-                    <tr ng-repeat="technology in vm.technologies">
-                        <td class="text-center">{{ technology.id }}</td>
-                        <td>{{ technology.description }}</td>
+                    <tr ng-repeat="voluntario in vm.voluntarios">
+                        <td class="text-center">{{ voluntario.id }}</td>
+                        <td>{{ voluntario.nome }}</td>
                         <td class="text-center">
                             <div class="button-group">
-                                <button class="btn btn-default btn-sm" ng-click="vm.loadTechnology(technology)"><i class="fa fa-edit">Editar</i></button>
-                                <button class="btn btn-danger btn-sm" ng-click="vm.removeTechnology(technology)"><i class="fa fa-remove">Apagar</i></button>
+                                <button class="btn btn-default btn-sm" ng-click="vm.loadVoluntario(technology)"><i class="fa fa-edit">Editar</i></button>
+                                <button class="btn btn-danger btn-sm" ng-click="vm.removeVoluntario(technology)"><i class="fa fa-remove">Apagar</i></button>
                             </div>
                         </td>
                     </tr>
-                        -->
                 </tbody>
             </table>
         </div>
 
         <div class="col-md4">
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Tecnologia</div>
+                <div class="panel-heading text-center">Voluntário</div>
                 <div class="panel-body">
                     <div class="form-group" ng-class="{ 'has-error' : description.$invalid }">
                         <label for="description">Descrição</label>

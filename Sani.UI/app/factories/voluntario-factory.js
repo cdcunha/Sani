@@ -3,11 +3,11 @@
 
     var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
 
-    angular.module('sani').factory('ApoiadorFactory', ApoiadorFactory);
+    angular.module('sani').factory('VoluntarioFactory', VoluntarioFactory);
 
-    //ApoiadorFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
+    //VoluntarioFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
 
-    function ApoiadorFactory($http, $rootScope) {
+    function VoluntarioFactory($http, $rootScope) {
         return {
             get: get,
             getById: getById,
@@ -24,7 +24,7 @@
 
         function post(apoiador) {
             console.log(apoiador);
-            return $http.post(SETTINGS.SERVICE_URL + 'api/apoiadores', vacancy, $rootScope.header);
+            return $http.post(SETTINGS.SERVICE_URL + 'api/voluntarios', vacancy, $rootScope.header);
         }
     }
 })();

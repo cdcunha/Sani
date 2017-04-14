@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace Sani.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ApoiadorController : Controller
+    public class VoluntarioController : Controller
     {
         [HttpGet("Get")]
-        public List<Apoiador> Get(string nome = "")
+        public List<Voluntario> Get(string nome = "")
         {
-            var apoiados = ControllersUtils.GetDatabase().GetCollection<Apoiador>("Apoiador");
+            var apoiados = ControllersUtils.GetDatabase().GetCollection<Voluntario>("Voluntario");
             var resultado = apoiados.Find(it => it.Nome.Contains(nome))
                 .SortBy(it => it.Nome).Skip(0).Limit(50);
             if (!resultado.Any())

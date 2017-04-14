@@ -25,25 +25,25 @@
             /****************************************
             * Vaga
             *****************************************/
-            .when('/apoiadores', {
-                controller: 'ApoiadorListCtrl',
+            .when('/voluntarios', {
+                controller: 'VoluntarioListCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/apoiador/index.html'
+                templateUrl: 'app/templates/voluntario/index.html'
             })
-            .when('/apoiadores/create', {
-                controller: 'ApoiadorCreateCtrl',
+            .when('/voluntarios/create', {
+                controller: 'VoluntarioCreateCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/apoiador/create.html'
+                templateUrl: 'app/templates/voluntario/create.html'
             })
-            .when('/apoiadores/edit/:id', {
-                controller: 'ApoiadorEditCtrl',
+            .when('/voluntarios/edit/:id', {
+                controller: 'VoluntarioEditCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/apoiador/edit.html'
+                templateUrl: 'app/templates/voluntario/edit.html'
             })
-            .when('/apoiadores/remove/:id', {
-                controller: 'ApoiadorRemoveCtrl',
+            .when('/voluntarios/remove/:id', {
+                controller: 'VoluntarioRemoveCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/apoiador/edit.html'
+                templateUrl: 'app/templates/voluntario/edit.html'
             })
             .otherwise({
                 redirectTo: '/'

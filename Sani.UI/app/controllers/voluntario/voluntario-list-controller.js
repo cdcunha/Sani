@@ -1,28 +1,26 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('ApoiadorEditCtrl', ApoiadorEditCtrl);
+    angular.module('sani').controller('VoluntarioListCtrl', VoluntarioListCtrl);
 
-    ApoiadorEditCtrl.$inject = ['$routeParams', 'ApoiadorFactory'];
+    VoluntarioListCtrl.$inject = ['VoluntarioFactory'];
 
-    function ApoiadorEditCtrl($routeParams, ApoiadorFactory) {
+    function VoluntarioListCtrl(VoluntarioFactory) {
         var vm = this;
-        var id = $routeParams.id;
-
-        vm.apoiador = {};
+        vm.voluntarios = [];
 
         activate();
 
         function activate() {
-            getApoiador();
+            getVacancies();
         }
 
-        function getApoiador() {
-            ApoiadorFactory.getById(id)
+        function getVacancies() {
+            VoluntarioFactory.get()
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                vm.apoiador = response;
+                vm.voluntarios = response;
             }
 
             function fail(error) {

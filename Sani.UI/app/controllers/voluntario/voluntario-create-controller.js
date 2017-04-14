@@ -1,13 +1,13 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('ApoiadorCreateCtrl', ApoiadorCreateCtrl);
+    angular.module('sani').controller('VoluntarioCreateCtrl', VoluntarioCreateCtrl);
 
-    ApoiadorCreateCtrl.$inject = ['$scope', '$location', 'ApoiadorFactory'];
+    VoluntarioCreateCtrl.$inject = ['$scope', '$location', 'VoluntarioFactory'];
 
-    function ApoiadorCreateCtrl($scope, $location, ApoiadorFactory) {
+    function VoluntarioCreateCtrl($scope, $location, VoluntarioFactory) {
         var vm = this;
-        vm.apoiadores = [];
-        vm.apoiador = {
+        vm.voluntarios = [];
+        vm.voluntario = {
             description: '',
             price: 0,
             image: '',
@@ -40,13 +40,13 @@
         }*/
 
         function save() {
-            ApoiadorFactory.post(vm.apoiador)
+            VoluntarioFactory.post(vm.voluntario)
                 .success(success)
                 .catch(fail);
 
             function success(response) {
                 toastr.success('Vaga <strong>' + response.description + '</strong> cadastrada com sucesso', 'Vaga Cadastrada');
-                $location.path('/apoiadores');
+                $location.path('/voluntarios');
             }
 
             function fail(error) {
@@ -66,7 +66,7 @@
             var reader = new FileReader();
             reader.onload = function (evt) {
                 $scope.$apply(function ($scope) {
-                    vm.apoiador.image = evt.target.result;
+                    vm.voluntario.image = evt.target.result;
                 });
             };
             reader.readAsDataURL(file);

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Sani.Api.Models
 {
     [DataContract]
-    public class Apoiador
+    public class Voluntario
     {
         [DataMember]
         [BsonId(IdGenerator = typeof(GuidGenerator))]
@@ -37,7 +37,7 @@ namespace Sani.Api.Models
         public System.DateTime? DataAlteracao { get; set; }
 
         [BsonConstructor]
-        public Apoiador(string nome)
+        public Voluntario(string nome)
         {
             Nome = nome;
             DataCriacao = System.DateTime.Now;
