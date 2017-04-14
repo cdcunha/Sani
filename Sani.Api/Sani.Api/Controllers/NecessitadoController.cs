@@ -17,28 +17,24 @@ namespace Sani_api.Controllers
             var necessitados = ControllersUtils.GetDatabase().GetCollection<Necessitado>("Necessitado");
             var resultado = necessitados.Find(it => it.Nome.Contains(nome))
                 .SortBy(it => it.Nome).Skip(0).Limit(50);
-            /*if (!resultado.Any())
+            if (!resultado.Any())
             {
-                Produto p = new Produto();
-                p.descricao = "TV";
-                prods.InsertOne(p);
+                Necessitado n = new Necessitado("José Maria");
+                necessitados.InsertOne(n);
 
-                p = new Produto();
-                p.descricao = "SmarthPhone";
-                prods.InsertOne(p);
+                n = new Necessitado("José Pedro");
+                necessitados.InsertOne(n);
 
-                p = new Produto();
-                p.descricao = "Monitor";
-                prods.InsertOne(p);
+                n = new Necessitado("Carlos José");
+                n.Nome = "Monitor";
+                necessitados.InsertOne(n);
 
-                p = new Produto();
-                p.descricao = "Cabo";
-                prods.InsertOne(p);
+                n = new Necessitado("Marilda Abravanel");
+                necessitados.InsertOne(n);
 
-                p = new Produto();
-                p.descricao = "Impressora";
-                prods.InsertOne(p);
-            }*/
+                n = new Necessitado("Nivaldo Damasceno");
+                necessitados.InsertOne(n);
+            }
             return resultado.ToList();
         }
     }

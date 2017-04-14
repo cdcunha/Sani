@@ -74,6 +74,7 @@ namespace Sani_api.Models
         public Necessitado(string nome)
         {
             Nome = nome;
+            DataCriacao = System.DateTime.Now;
         }
     }
 }
