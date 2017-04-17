@@ -1,11 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Sani.Api.Notifications;
 using System.Runtime.Serialization;
-using System.Threading.Tasks;
 
 namespace Sani.Api.Models
 {
@@ -13,28 +10,28 @@ namespace Sani.Api.Models
     public class Voluntario
     {
         [DataMember]
-        [BsonId(IdGenerator = typeof(GuidGenerator))]
-        public System.Guid Id { get; set; }
+        [BsonId]//(IdGenerator = typeof(GuidGenerator))]
+        public ObjectId Id { get; set; }
 
         [DataMember]
-        [BsonElement]
+        //[BsonElement] Usado para atributos somente leitura
         [BsonRequired]
         public string Nome { get; set; }
 
         [DataMember]
-        [BsonElement]
         [BsonRepresentation(BsonType.Boolean)]
         public bool Ativo { get; set; }
 
         [DataMember]
-        [BsonElement]
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
         public System.DateTime DataCriacao { get; set; }
 
         [DataMember]
-        [BsonElement]
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataAlteracao { get; set; }
+
+        [BsonIgnore]
+        public NotificationHandler Notifications { get; set; }
 
         [BsonConstructor]
         public Voluntario(string nome)

@@ -1,42 +1,97 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Sani.Api.Models;
-using Sani_api.Controllers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sani.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Controller]
     public class VoluntarioController : Controller
     {
-        [HttpGet("Get")]
-        public List<Voluntario> Get(string nome = "")
+        private IMongoCollection<Voluntario> voluntarios;
+
+        public VoluntarioController(MongoClient client)
         {
-            var apoiados = ControllersUtils.GetDatabase().GetCollection<Voluntario>("Voluntario");
-            var resultado = apoiados.Find(it => it.Nome.Contains(nome))
-                .SortBy(it => it.Nome).Skip(0).Limit(50);
+            voluntarios = ControllersUtils.GetDatabase(client).GetCollection<Voluntario>(nameof(voluntarios));
+        }
+
+        [HttpGet]
+        [Route("api/[controller]")]
+        public List<Voluntario> Get()
+        {
+            var resultado = voluntarios.Find(FilterDefinition<Voluntario>.Empty).SortBy(it => it.Nome);//.Skip(0).Limit(50);
+            return resultado.ToList();
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/{id}")]
+        public Voluntario GetDetail(string id)
+        {
+            var resultado = voluntarios.Find(Builders<Voluntario>.Filter.Eq("Id", ObjectId.Parse(id))).FirstOrDefault();
+            return resultado;
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/{nome}")]
+        public List<Voluntario> Get(string nome)
+        {
+            var resultado = voluntarios.Find(it => it.Nome.Contains(nome)).SortBy(it => it.Nome).Skip(0).Limit(50);
+            //var resultado = voluntarios.Find(Builders<Voluntario>.Filter.Eq("Id", ObjectId.Parse(id)));
+            #region
             if (!resultado.Any())
             {
                 Voluntario n = new Voluntario("dr. José Maria");
-                apoiados.InsertOne(n);
+                voluntarios.InsertOne(n);
 
                 n = new Voluntario("dr. José Pedro");
-                apoiados.InsertOne(n);
+                voluntarios.InsertOne(n);
 
                 n = new Voluntario("dr. Carlos José");
                 n.Nome = "Monitor";
-                apoiados.InsertOne(n);
+                voluntarios.InsertOne(n);
 
                 n = new Voluntario("dra. Marilda Abravanel");
-                apoiados.InsertOne(n);
+                voluntarios.InsertOne(n);
 
                 n = new Voluntario("dr. Nivaldo Damasceno");
-                apoiados.InsertOne(n);
+                voluntarios.InsertOne(n);
             }
+            #endregion
             return resultado.ToList();
+        }
+        
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        [Route("api/[controller]")]
+        public Voluntario Post([FromBody]dynamic body)
+        {
+            Voluntario voluntario = new Voluntario((string)body.nome);
+            voluntarios.InsertOne(voluntario);
+            return voluntario;
+        }
+
+        [HttpPut]
+        [Route("api/[controller]/{id}")]
+        public Voluntario Put(string id, [FromBody]dynamic body)
+        {
+            Voluntario voluntario = new Voluntario((string)body.nome);
+            voluntario.Id = ObjectId.Parse(id);
+            
+            //voluntarios.UpdateOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
+            voluntarios.ReplaceOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
+
+            return voluntario;
+        }
+
+        [HttpDelete]
+        [Route("api/[controller]/{id}")]
+        public Voluntario Delete(string id)
+        {
+            Voluntario voluntario = GetDetail(id);
+            voluntarios.DeleteOne(Builders<Voluntario>.Filter.Eq(p => p.Id, ObjectId.Parse(id)));
+            return voluntario;
         }
     }
 }

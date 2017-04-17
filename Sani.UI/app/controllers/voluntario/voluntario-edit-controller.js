@@ -26,9 +26,14 @@
             }
 
             function fail(error) {
-                var erros = error.data.errors;
-                for (var i = 0; i < erros.length; ++i) {
-                    toastr.error(erros[i].value, 'Falha na Requisição')
+                if (error.data === '') {
+                    toastr.error(error.status, error.statusText)
+                }
+                else {
+                    var erros = error.data.errors;
+                    for (var i = 0; i < erros.length; ++i) {
+                        toastr.error(erros[i].value, 'Falha na Requisição')
+                    }
                 }
             }
         }

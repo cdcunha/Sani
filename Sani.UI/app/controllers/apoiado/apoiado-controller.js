@@ -8,7 +8,7 @@
         var vm = this;
         vm.apoiados = [];
         vm.apoiado = {
-            id: 0,
+            id: '',
             nome: ''
         };
         vm.saveApoiado = saveApoiado;
@@ -35,9 +35,15 @@
                 if (error.status == 401)
                     toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
                 else {
-                    var erros = error.data.errors;
-                    for (var i = 0; i < erros.length; ++i) {
-                        toastr.error(erros[i].value, 'Falha na Requisição')
+                    if (error.data == '') {
+                        toastr.error(error.status, error.statusText)
+                    }
+                    else
+                    {
+                        var erros = error.data.errors;
+                        for (var i = 0; i < erros.length; ++i) {
+                            toastr.error(erros[i].value, 'Falha na Requisição')
+                        }
                     }
                 }
             }
@@ -61,9 +67,14 @@
             }
 
             function fail(error) {
-                var erros = error.data.errors;
-                for (var i = 0; i < erros.length; ++i) {
-                    toastr.error(erros[i].value, 'Falha na Requisição')
+                if (error.data === '') {
+                    toastr.error(error.status, error.statusText)
+                }
+                else {
+                    var erros = error.data.errors;
+                    for (var i = 0; i < erros.length; ++i) {
+                        toastr.error(erros[i].value, 'Falha na Requisição')
+                    }
                 }
             }
             clearApoiado();

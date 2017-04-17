@@ -1,17 +1,15 @@
-﻿<h3 class="text-center">Tecnologias</h3>
+﻿<h3 class="text-center">Membros Apoiados</h3>
 
 <div class="col-md-8">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="text-center">#</th>
-                <th class="text-center">Apoiado</th>
+                <th class="text-center">Nome</th>
                 <th class="text-center"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="apoiado in vm.apoiados">
-                <td class="text-center">{{ apoiado.id }}</td>
                 <td>{{ apoiado.nome }}</td>
                 <td class="text-center">
                     <div class="button-group">
@@ -23,7 +21,6 @@
         </tbody>
     </table>
 </div>
-
 <div class="col-md4">
     <div class="panel panel-default">
         <div class="panel-heading text-center">Apoiado</div>

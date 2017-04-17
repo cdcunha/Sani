@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
+    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/api/Apoiado' };
 
     angular.module('sani').factory('ApoiadoFactory', ApoiadoFactory);
 
@@ -10,21 +10,26 @@
     function ApoiadoFactory($http, $rootScope) {
         return {
             get: get,
+            getById: getById,
             post: post,
             put: put,
             remove: remove
         }
 
         function get() {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/Apoiado', $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL, $rootScope.header);
+        }
+
+        function getById(id) {
+            return $http.get(SETTINGS.SERVICE_URL + '/' + id, $rootScope.header);
         }
 
         function post(apoiado) {
-            return $http.post(SETTINGS.SERVICE_URL + 'api/Apoiado', apoiado, $rootScope.header);
+            return $http.post(SETTINGS.SERVICE_URL, apoiado, $rootScope.header);
         }
 
         function put(apoiado) {
-            return $http.put(SETTINGS.SERVICE_URL + 'api/Apoiado/' + apoiado.id, apoiado, $rootScope.header);
+            return $http.put(SETTINGS.SERVICE_URL + '/' + apoiado.id, apoiado, $rootScope.header);
         }
 
         function remove(apoiado) {

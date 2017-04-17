@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/' };
+    var SETTINGS = { 'SERVICE_URL': 'http://localhost:56914/api/Voluntario' };
 
     angular.module('sani').factory('VoluntarioFactory', VoluntarioFactory);
 
@@ -11,20 +11,30 @@
         return {
             get: get,
             getById: getById,
-            post: post
+            post: post,
+            put: put,
+            remove: remove
         }
 
         function get() {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/voluntarios', $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL, $rootScope.header);
         }
 
         function getById(id) {
-            return $http.get(SETTINGS.SERVICE_URL + 'api/voluntarios/' + id, $rootScope.header);
+            return $http.get(SETTINGS.SERVICE_URL + '/' + id, $rootScope.header);
         }
 
-        function post(apoiador) {
-            console.log(apoiador);
-            return $http.post(SETTINGS.SERVICE_URL + 'api/voluntarios', vacancy, $rootScope.header);
+        function post(voluntario) {
+            console.log(voluntario);
+            return $http.post(SETTINGS.SERVICE_URL, voluntario, $rootScope.header);
+        }
+
+        function put(voluntario) {
+            return $http.put(SETTINGS.SERVICE_URL + '/' + voluntario.id, voluntario, $rootScope.header);
+        }
+
+        function remove(voluntario) {
+            return $http.delete(SETTINGS.SERVICE_URL + 'api/Voluntario/' + voluntario.id, $rootScope.header);
         }
     }
 })();

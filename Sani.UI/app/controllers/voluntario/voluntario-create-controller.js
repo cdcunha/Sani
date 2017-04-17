@@ -8,6 +8,7 @@
         var vm = this;
         vm.voluntarios = [];
         vm.voluntario = {
+            id: '',
             nome: '',
         };
         vm.save = save;
@@ -45,13 +46,18 @@
                 $location.path('/voluntarios');
             }
 
-            function fail(error) {
-                if (error.status == 401)
+            function fail(error){
+                if (error.status === 401)
                     toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
                 else {
-                    var erros = error.data.errors;
-                    for (var i = 0; i < erros.length; ++i) {
-                        toastr.error(erros[i].value, 'Falha na Requisição')
+                    if (error.data === '') {
+                        toastr.error(error.status, error.statusText)
+                    }
+                    else {
+                        var erros = error.data.errors;
+                        for (var i = 0; i < erros.length; ++i) {
+                            toastr.error(erros[i].value, 'Falha na Requisição')
+                        }
                     }
                 }   
             }
