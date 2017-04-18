@@ -10,30 +10,41 @@ namespace Sani.Api.Controllers
     [Controller]
     public class VoluntarioController : Controller
     {
-        private IMongoCollection<Voluntario> voluntarios;
+        private readonly IVoluntarioRepository _voluntarioRepository;
+        //private IMongoCollection<Voluntario> voluntarios;
 
-        public VoluntarioController(MongoClient client)
+        public VoluntarioController(MongoDbContext context)
         {
-            voluntarios = ControllersUtils.GetDatabase(client).GetCollection<Voluntario>(nameof(voluntarios));
+            //voluntarios = ControllersUtils.GetDatabase(client).GetCollection<Voluntario>(nameof(voluntarios));
+            _voluntarioRepository = context.GetVoluntarioRepository();
         }
 
-        [HttpGet]
-        [Route("api/[controller]")]
-        public List<Voluntario> Get()
+        [HttpGet("api/[controller]")]
+        //[Route("api/[controller]")]
+        public IEnumerable<Voluntario> Get()
         {
-            var resultado = voluntarios.Find(FilterDefinition<Voluntario>.Empty).SortBy(it => it.Nome);//.Skip(0).Limit(50);
+            /*var resultado = voluntarios.Find(FilterDefinition<Voluntario>.Empty).SortBy(it => it.Nome);//.Skip(0).Limit(50);
             return resultado.ToList();
+            */
+            return _voluntarioRepository.GetAll();
         }
 
-        [HttpGet]
-        [Route("api/[controller]/{id}")]
-        public Voluntario GetDetail(string id)
+        [HttpGet("api/[controller]/{id}", Name = "GetVoluntario")]
+        //[Route("api/[controller]/{id}")]
+        public IActionResult GetDetail(System.Guid id)
         {
-            var resultado = voluntarios.Find(Builders<Voluntario>.Filter.Eq("Id", ObjectId.Parse(id))).FirstOrDefault();
+            /*var resultado = voluntarios.Find(Builders<Voluntario>.Filter.Eq("Id", ObjectId.Parse(id))).FirstOrDefault();
             return resultado;
+            */
+            var item = _voluntarioRepository.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(item);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("api/[controller]/{nome}")]
         public List<Voluntario> Get(string nome)
         {
@@ -61,37 +72,70 @@ namespace Sani.Api.Controllers
             #endregion
             return resultado.ToList();
         }
+        */
         
-        [HttpPost]
+        [HttpPost("api/[controller]")]
         //[ValidateAntiForgeryToken]
-        [Route("api/[controller]")]
-        public Voluntario Post([FromBody]dynamic body)
+        //[Route("api/[controller]")]
+        public IActionResult Create([FromBody] Voluntario voluntario)//[FromBody]dynamic body)
         {
-            Voluntario voluntario = new Voluntario((string)body.nome);
+            /*Voluntario voluntario = new Voluntario((string)body.nome);
             voluntarios.InsertOne(voluntario);
             return voluntario;
+            */
+            if (voluntario == null)
+            {
+                return BadRequest();
+            }
+            _voluntarioRepository.Add(voluntario);
+            return CreatedAtRoute("GetVoluntario", new { id = voluntario.Id }, voluntario);
         }
 
-        [HttpPut]
-        [Route("api/[controller]/{id}")]
-        public Voluntario Put(string id, [FromBody]dynamic body)
+        [HttpPut("api/[controller]/{id}")]
+        //[Route("api/[controller]/{id}")]
+        public IActionResult Update(System.Guid id, [FromBody]Voluntario item)
         {
-            Voluntario voluntario = new Voluntario((string)body.nome);
+            /*Voluntario voluntario = new Voluntario((string)body.nome);
             voluntario.Id = ObjectId.Parse(id);
             
             //voluntarios.UpdateOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
             voluntarios.ReplaceOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
 
             return voluntario;
+            */
+            if (item == null || item.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var apoiado = _voluntarioRepository.Find(id);
+            if (apoiado == null)
+            {
+                return NotFound();
+            }
+
+            apoiado.Nome = item.Nome;
+
+            _voluntarioRepository.Update(apoiado);
+            return new NoContentResult();
         }
 
-        [HttpDelete]
-        [Route("api/[controller]/{id}")]
-        public Voluntario Delete(string id)
+        [HttpDelete("api/[controller]/{id}")]
+        //[Route("api/[controller]/{id}")]
+        public IActionResult Delete(System.Guid id)
         {
-            Voluntario voluntario = GetDetail(id);
+            /*Voluntario voluntario = GetDetail(id);
             voluntarios.DeleteOne(Builders<Voluntario>.Filter.Eq(p => p.Id, ObjectId.Parse(id)));
             return voluntario;
+            */
+            var apoiado = _voluntarioRepository.Find(id);
+            if (apoiado == null)
+            {
+                return NotFound();
+            }
+
+            _voluntarioRepository.Remove(id);
+            return new NoContentResult();
         }
     }
 }

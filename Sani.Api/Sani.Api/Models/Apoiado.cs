@@ -10,8 +10,8 @@ namespace Sani.Api.Models
     public class Apoiado
     {
         [DataMember]
-        [BsonId]//(IdGenerator = typeof(GuidGenerator))]
-        public ObjectId Id { get; set; }
+        [BsonId (IdGenerator = typeof(GuidGenerator))]
+        public System.Guid Id { get; set; }
 
         [DataMember]
         //[BsonElement] Usado para atributos somente leitura

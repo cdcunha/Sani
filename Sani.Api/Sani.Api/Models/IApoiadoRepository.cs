@@ -10,8 +10,8 @@ namespace Sani.Api.Models
     {
         void Add(Apoiado apoiado);
         IEnumerable<Apoiado> GetAll();
-        Apoiado Find(ObjectId id);
-        void Remove(ObjectId id);
+        Apoiado Find(Guid id);
+        void Remove(Guid id);
         void Update(Apoiado apoiado);
     }
 }

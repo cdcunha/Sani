@@ -24,7 +24,7 @@ namespace Sani.Api.Controllers
             //_apoiadoRepository = apoiadoRepository;
         }
 
-        [HttpGet]
+        [HttpGet("api/[controller]")]
         //[Route("api/[controller]")]
         public IEnumerable<Apoiado> GetAll()
         {
@@ -33,10 +33,10 @@ namespace Sani.Api.Controllers
             return _apoiadoRepository.GetAll();
         }
 
-        [HttpGet("{id}", Name = "GetApoio")]
+        [HttpGet("api/[controller]/{id}", Name = "GetApoio")]
         //[HttpGet]
         //[Route("api/[controller]/{id}")]
-        public IActionResult GetById(ObjectId id)
+        public IActionResult GetById(System.Guid id)
         {
             //var resultado = apoiados.Find(Builders<Apoiado>.Filter.Eq("_id", ObjectId.Parse(id))).FirstOrDefault();
             //return resultado;
@@ -80,7 +80,7 @@ namespace Sani.Api.Controllers
             return resultado.ToList();
         }*/
 
-        [HttpPost]
+        [HttpPost("api/[controller]")]
         //[ValidateAntiForgeryToken]
         //[Route("api/[controller]")]
         public IActionResult Create([FromBody] Apoiado apoiado)//[FromBody]dynamic body)
@@ -96,10 +96,10 @@ namespace Sani.Api.Controllers
             return CreatedAtRoute("GetApoio", new { id = apoiado.Id }, apoiado);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("api/[controller]/{id}")]
         //[HttpPut]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Update(ObjectId id, [FromBody]Apoiado item)
+        public IActionResult Update(System.Guid id, [FromBody]Apoiado item)
         {
             /*Apoiado apoiado = new Apoiado((string)body.nome);
             apoiado.Id = ObjectId.Parse(id);
@@ -126,10 +126,10 @@ namespace Sani.Api.Controllers
             return new NoContentResult();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("api/[controller]/{id}")]
         //[HttpDelete]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Delete(ObjectId id)
+        public IActionResult Delete(System.Guid id)
         {
             /*Apoiado apoiado = GetDetail(id);
             DeleteResult result = apoiados.DeleteOne(Builders<Apoiado>.Filter.Eq(p => p.Id, ObjectId.Parse(id)));

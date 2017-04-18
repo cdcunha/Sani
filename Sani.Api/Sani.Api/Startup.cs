@@ -62,6 +62,7 @@ namespace Sani.Api
             app.UseCors("AllowAll");
             app.UseMvc();
 
+            app.UseMvcWithDefaultRoute();
             /*app.UseMvc(routes =>
             {
                 routes.MapRoute(

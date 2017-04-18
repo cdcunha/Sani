@@ -1,9 +1,7 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace Sani.Api.Models
 {
@@ -14,8 +12,8 @@ namespace Sani.Api.Models
         public ApoiadoRepository(MongoDbContext context)
         {
             _context = context;
-
-            if (_context.Apoiados.Count(FilterDefinition<Apoiado>.Empty) == 0)
+            var resultado = _context.Apoiados.Find(FilterDefinition<Sani.Api.Models.Apoiado>.Empty).Skip(1);
+            if (!resultado.Any())
                 Add(new Apoiado("Apoiado Teste"));
         }
 
@@ -27,7 +25,7 @@ namespace Sani.Api.Models
             //_context.SaveChanges();
         }
 
-        public Apoiado Find(ObjectId id)
+        public Apoiado Find(Guid id)
         {
             var resultado = _context.Apoiados.Find(Builders<Apoiado>.Filter.Eq("_id", id)).FirstOrDefault();
             return resultado;
@@ -39,7 +37,7 @@ namespace Sani.Api.Models
             return resultado.ToList();
         }
 
-        public void Remove(ObjectId id)
+        public void Remove(Guid id)
         {
             _context.Apoiados.DeleteOne(Builders<Apoiado>.Filter.Eq(p => p.Id, id));
 

@@ -13,14 +13,20 @@ namespace Sani.Api
         {
             IMongoDatabase _mongoDatabase = ControllersUtils.GetDatabase(mongoClient);
 
-            var Apoiado = _mongoDatabase.GetCollection<Apoiado>("Apoiado");
+            Apoiados = _mongoDatabase.GetCollection<Apoiado>("Apoiado");
+            Voluntarios = _mongoDatabase.GetCollection<Voluntario>("Voluntario");
         }
 
         public IApoiadoRepository GetApoiadoRepository()
         {
             return new ApoiadoRepository(this);
         }
-        
+
+        public IVoluntarioRepository GetVoluntarioRepository()
+        {
+            return new VoluntarioRepository(this);
+        }
+
         public IMongoCollection<Apoiado> Apoiados { get; set; }
         public IMongoCollection<Voluntario> Voluntarios { get; set; }
         
