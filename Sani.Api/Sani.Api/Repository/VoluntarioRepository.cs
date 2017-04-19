@@ -1,9 +1,10 @@
 ﻿using MongoDB.Driver;
+using Sani.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sani.Api.Models
+namespace Sani.Api.Repository
 {
     public class VoluntarioRepository : IVoluntarioRepository
     {

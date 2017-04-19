@@ -9,7 +9,21 @@
         vm.apoiados = [];
         vm.apoiado = {
             id: '',
-            nome: ''
+            nome: '',
+            nomeMae: '',
+            nomePai: '',
+            logradouro: '',
+            numeroLogradouro: '',
+            complementoLogradouro: '',
+            bairro: '',
+            cidade: '',
+            uf: '',
+            estadoCivil: '',
+            qtdeDependentes: 0,
+            dataNascimento,
+            ramoAtividade: '',
+            possuiVinculoCarteira: false,
+            tempoExperiencia: 0
         };
         vm.saveApoiado = saveApoiado;
         vm.loadApoiado = loadApoiado;

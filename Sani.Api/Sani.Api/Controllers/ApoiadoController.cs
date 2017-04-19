@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sani.Api.Assertions;
 using Sani.Api.Models;
-using Sani.Api.Notifications;
+using Sani.Api.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sani.Api.Controllers
 {

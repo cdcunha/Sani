@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace Sani.Api.Assertions
 {
-    public class ApoiadoAssertion
+    public class ApoiadoAssertion : BaseAssertion
     {
-        public NotificationHandler Notifications { get; private set; }
-
-        public ApoiadoAssertion(Models.Apoiado apoiado, bool canIdNull = false)
+        public ApoiadoAssertion(Models.Apoiado apoiado, bool canIdNull = false) : base()
         {
             if (apoiado == null)
             {
                 throw new Exception("O parâmetro apoiado não pode ser nulo [classe VoluntarioAssertion]");
             }
-            Notifications = new NotificationHandler();
 
             if (!canIdNull)
             {
@@ -29,11 +26,6 @@ namespace Sani.Api.Assertions
 
             if (!apoiado.DataNascimento.HasValue)
                 SetNofication("500", "Informe a Data de Nascimento");
-        }
-
-        private void SetNofication(string key, string value)
-        {
-            Notifications.Handle(key, value);
         }
     }
 }

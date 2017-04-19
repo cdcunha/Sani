@@ -3,18 +3,14 @@ using System;
 
 namespace Sani.Api.Assertions
 {
-    public class VoluntarioAssertion
-    {
-        public bool HasNotification { get; private set; }
-        public NotificationHandler Notifications { get; private set; }
-
-        public VoluntarioAssertion(Models.Voluntario voluntario, bool canIdNull = false)
+    public class VoluntarioAssertion : BaseAssertion
+    {   
+        public VoluntarioAssertion(Models.Voluntario voluntario, bool canIdNull = false) : base()
         {
             if (voluntario == null)
             {
                 throw new Exception("O parâmetro voluntario não pode ser nulo [classe VoluntarioAssertion]");
             }
-            Notifications = new NotificationHandler();
 
             if (!canIdNull)
             {
@@ -25,13 +21,6 @@ namespace Sani.Api.Assertions
             if (string.IsNullOrEmpty(voluntario.Nome))
                 SetNofication("500", "Informe o Nome");
             
-        }
-
-        private void SetNofication(string key, string value)
-        {
-            Notifications.Handle(key, value);
-            if (HasNotification)
-                HasNotification = false;
         }
     }
 }

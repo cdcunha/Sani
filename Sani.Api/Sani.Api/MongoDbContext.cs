@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using Sani.Api.Controllers;
 using Sani.Api.Models;
-using System.Collections.Generic;
+using Sani.Api.Repository;
 
 namespace Sani.Api
 {

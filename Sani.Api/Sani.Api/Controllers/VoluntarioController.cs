@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using Sani.Api.Models;
+using Sani.Api.Repository;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sani.Api.Controllers
 {
@@ -11,11 +9,9 @@ namespace Sani.Api.Controllers
     public class VoluntarioController : Controller
     {
         private readonly IVoluntarioRepository _voluntarioRepository;
-        //private IMongoCollection<Voluntario> voluntarios;
 
         public VoluntarioController(MongoDbContext context)
         {
-            //voluntarios = ControllersUtils.GetDatabase(client).GetCollection<Voluntario>(nameof(voluntarios));
             _voluntarioRepository = context.GetVoluntarioRepository();
         }
 
@@ -23,9 +19,6 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]")]
         public IEnumerable<Voluntario> Get()
         {
-            /*var resultado = voluntarios.Find(FilterDefinition<Voluntario>.Empty).SortBy(it => it.Nome);//.Skip(0).Limit(50);
-            return resultado.ToList();
-            */
             return _voluntarioRepository.GetAll();
         }
 
@@ -33,9 +26,6 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]/{id}")]
         public IActionResult GetDetail(System.Guid id)
         {
-            /*var resultado = voluntarios.Find(Builders<Voluntario>.Filter.Eq("Id", ObjectId.Parse(id))).FirstOrDefault();
-            return resultado;
-            */
             var item = _voluntarioRepository.Find(id);
             if (item == null)
             {
@@ -79,10 +69,6 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]")]
         public IActionResult Create([FromBody] Voluntario voluntario)//[FromBody]dynamic body)
         {
-            /*Voluntario voluntario = new Voluntario((string)body.nome);
-            voluntarios.InsertOne(voluntario);
-            return voluntario;
-            */
             if (voluntario == null)
             {
                 return BadRequest();
@@ -95,14 +81,6 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]/{id}")]
         public IActionResult Update(System.Guid id, [FromBody]Voluntario item)
         {
-            /*Voluntario voluntario = new Voluntario((string)body.nome);
-            voluntario.Id = ObjectId.Parse(id);
-            
-            //voluntarios.UpdateOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
-            voluntarios.ReplaceOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
-
-            return voluntario;
-            */
             if (item == null || item.Id != id)
             {
                 return BadRequest();
@@ -124,10 +102,6 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]/{id}")]
         public IActionResult Delete(System.Guid id)
         {
-            /*Voluntario voluntario = GetDetail(id);
-            voluntarios.DeleteOne(Builders<Voluntario>.Filter.Eq(p => p.Id, ObjectId.Parse(id)));
-            return voluntario;
-            */
             var apoiado = _voluntarioRepository.Find(id);
             if (apoiado == null)
             {

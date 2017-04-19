@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Sani.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sani.Api.Models
+namespace Sani.Api.Repository
 {
     public interface IVoluntarioRepository
     {
