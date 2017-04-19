@@ -43,7 +43,7 @@ namespace Sani.Api.Models
 
             //var apoiado = _context.Apoiados.First(t => t.Id == id);
             //_context.Apoiados.Remove(apoiado);
-            _context.SaveChanges();
+           // _context.SaveChanges();
         }
 
         public void Update(Apoiado apoiado)

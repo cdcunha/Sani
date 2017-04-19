@@ -30,13 +30,11 @@ namespace Sani.Api.Models
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataAlteracao { get; set; }
 
-        [BsonIgnore]
-        public NotificationHandler Notifications { get; set; }
-
         [BsonConstructor]
         public Voluntario(string nome)
         {
             Nome = nome;
+            Ativo = true;
             DataCriacao = System.DateTime.Now;
         }
     }

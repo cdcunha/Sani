@@ -26,7 +26,7 @@ namespace Sani.Api.Models
         }
 
         public Voluntario Find(Guid id)
-        {
+        {   
             var resultado = _context.Voluntarios.Find(Builders<Voluntario>.Filter.Eq("_id", id)).FirstOrDefault();
             return resultado;
         }
@@ -43,7 +43,7 @@ namespace Sani.Api.Models
 
             //var apoiado = _context.Apoiados.First(t => t.Id == id);
             //_context.Apoiados.Remove(apoiado);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void Update(Voluntario voluntario)

@@ -32,17 +32,17 @@
             }
 
             function fail(error) {
-                if (error.status == 401)
+                if (error.status === 401)
                     toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
                 else {
-                    if (error.data == '') {
-                        toastr.error(error.status, error.statusText)
+                    if (error.data === '') {
+                        toastr.error(error.status, error.statusText);
                     }
                     else
                     {
-                        var erros = error.data.errors;
+                        var erros = error.data;
                         for (var i = 0; i < erros.length; ++i) {
-                            toastr.error(erros[i].value, 'Falha na Requisição')
+                            toastr.error(erros[i].value, 'Falha na Requisição');
                         }
                     }
                 }
@@ -50,7 +50,7 @@
         }
 
         function saveApoiado() {
-            if (vm.apoiado.id == 0) {
+            if (vm.apoiado.id === 0) {
                 addApoiado();
             } else {
                 updateApoiado();
@@ -68,12 +68,12 @@
 
             function fail(error) {
                 if (error.data === '') {
-                    toastr.error(error.status, error.statusText)
+                    toastr.error(error.status, error.statusText);
                 }
                 else {
-                    var erros = error.data.errors;
+                    var erros = error.data;
                     for (var i = 0; i < erros.length; ++i) {
-                        toastr.error(erros[i].value, 'Falha na Requisição')
+                        toastr.error(erros[i].value, 'Falha na Requisição');
                     }
                 }
             }
@@ -86,13 +86,13 @@
                  .catch(fail);
 
             function success(response) {
-                toastr.success('Apoiado <strong>' + response.nome + '</strong> alterada com sucesso', 'Sucesso');
+                toastr.success('Apoiado <strong>' + apoiado.nome + '</strong> alterada com sucesso', 'Sucesso');
             }
 
             function fail(error) {
-                var erros = error.data.errors;
+                var erros = error.data;
                 for (var i = 0; i < erros.length; ++i) {
-                    toastr.error(erros[i].value, 'Falha na Requisição')
+                    toastr.error(erros[i].value, 'Falha na Requisição');
                 }
             }
             clearApoiado();
@@ -105,15 +105,15 @@
                  .catch(fail);
 
             function success(response) {
-                toastr.success('Apoiado <strong>' + response.name + '</strong> removida com sucesso', 'Sucesso');
+                toastr.success('Apoiado <strong>' + apoiado.name + '</strong> removida com sucesso', 'Sucesso');
                 var index = vm.apoiados.indexOf(apoiado);
                 vm.apoiados.splice(index, 1);
             }
 
             function fail(error) {
-                var erros = error.data.errors;
+                var erros = error.data;
                 for (var i = 0; i < erros.length; ++i) {
-                    toastr.error(erros[i].value, 'Falha na Requisição')
+                    toastr.error(erros[i].value, 'Falha na Requisição');
                 }
             }
 
@@ -134,5 +134,5 @@
                 name: ''
             };
         }
-    };
+    }
 })();

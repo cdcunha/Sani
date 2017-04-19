@@ -34,7 +34,7 @@
         }
 
         function remove(voluntario) {
-            return $http.delete(SETTINGS.SERVICE_URL + 'api/Voluntario/' + voluntario.id, $rootScope.header);
+            return $http.delete(SETTINGS.SERVICE_URL + '/' + voluntario.id, $rootScope.header);
         }
     }
 })();

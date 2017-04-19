@@ -33,7 +33,7 @@
         }
 
         function remove(apoiado) {
-            return $http.delete(SETTINGS.SERVICE_URL + 'api/Apoiado/' + apoiado.id, $rootScope.header);
+            return $http.delete(SETTINGS.SERVICE_URL + '/' + apoiado.id, $rootScope.header);
         }
     }
 })();

@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Sani.Api.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Net;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace Sani.Api
 {
@@ -49,16 +52,69 @@ namespace Sani.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            app.UseStatusCodePages();
             //env.EnvironmentName = EnvironmentName.Production;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+            /*else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error");
             }
-            
+
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
+            app.MapWhen(context => context.Request.Path == "/missingpage", builder => { });
+
+            app.Map("/error", error =>
+            {
+                error.Run(async context =>
+                {
+                    var builder = new StringBuilder();
+                    builder.AppendLine("<html><body>");
+                    builder.AppendLine("An error occurred.<br />");
+                    var path = context.Request.Path.ToString();
+                    if (path.Length > 1)
+                    {
+                        builder.AppendLine("Status Code: " +
+                            HtmlEncoder.Default.Encode(path.Substring(1)) + "<br />");
+                    }
+                    var referrer = context.Request.Headers["referer"];
+                    if (!string.IsNullOrEmpty(referrer))
+                    {
+                        builder.AppendLine("Return to <a href=\"" +
+                            HtmlEncoder.Default.Encode(referrer) + "\">" +
+                            WebUtility.HtmlEncode(referrer) + "</a><br />");
+                    }
+                    builder.AppendLine("</body></html>");
+                    byte[] bodyBytes = Encoding.Unicode.GetBytes(builder.ToString());
+
+                    context.Response.ContentType = "text/html";
+                    await context.Response.Body.WriteAsync(bodyBytes, 0, bodyBytes.Length);
+                });
+            });
+            #region snippet_AppRun
+            app.Run(async (context) =>
+            {
+                if (context.Request.Query.ContainsKey("throw"))
+                {
+                    throw new Exception("Exception triggered!");
+                }
+                var builder = new StringBuilder();
+                builder.AppendLine("<html><body>Hello World!");
+                builder.AppendLine("<ul>");
+                builder.AppendLine("<li><a href=\"/?throw=true\">Throw Exception</a></li>");
+                builder.AppendLine("<li><a href=\"/missingpage\">Missing Page</a></li>");
+                builder.AppendLine("</ul>");
+                builder.AppendLine("</body></html>");
+                byte[] bodyBytes = Encoding.Unicode.GetBytes(builder.ToString());
+
+                context.Response.ContentType = "text/html";
+                await context.Response.Body.WriteAsync(bodyBytes, 0, bodyBytes.Length);
+            });
+            #endregion
+            */
+
             app.UseCors("AllowAll");
             app.UseMvc();
 

@@ -54,7 +54,7 @@
                         toastr.error(error.status, error.statusText)
                     }
                     else {
-                        var erros = error.data.errors;
+                        var erros = error.data;
                         for (var i = 0; i < erros.length; ++i) {
                             toastr.error(erros[i].value, 'Falha na Requisição')
                         }

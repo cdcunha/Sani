@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using Sani.Api.Assertions;
 using Sani.Api.Models;
+using Sani.Api.Notifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,41 +12,43 @@ namespace Sani.Api.Controllers
     public class ApoiadoController : Controller
     {
         private readonly IApoiadoRepository _apoiadoRepository;
-        //private IMongoCollection<Apoiado> apoiados;
-        
-        //public ApoiadoController(MongoClient client)
-        //public ApoiadoController(IApoiadoRepository apoiadoRepository)
+
         public ApoiadoController(MongoDbContext context)
         {
-            //_apoiadoRepository = new ApoiadoRepository();
-            //apoiados = ControllersUtils.GetDatabase(client).GetCollection<Apoiado>(nameof(apoiados));
             _apoiadoRepository = context.GetApoiadoRepository();
-            //_context = context;
-            //_apoiadoRepository = apoiadoRepository;
         }
 
         [HttpGet("api/[controller]")]
         //[Route("api/[controller]")]
         public IEnumerable<Apoiado> GetAll()
         {
-            //var resultado = apoiados.Find(FilterDefinition<Apoiado>.Empty).SortBy(it => it.Nome);//.Skip(0).Limit(50);
-            //return resultado.ToList();
-            return _apoiadoRepository.GetAll();
+                return _apoiadoRepository.GetAll();
         }
 
         [HttpGet("api/[controller]/{id}", Name = "GetApoio")]
         //[HttpGet]
         //[Route("api/[controller]/{id}")]
-        public IActionResult GetById(System.Guid id)
+        public IActionResult GetById(Guid id)
         {
-            //var resultado = apoiados.Find(Builders<Apoiado>.Filter.Eq("_id", ObjectId.Parse(id))).FirstOrDefault();
-            //return resultado;
-            var item = _apoiadoRepository.Find(id);
-            if (item == null)
+            if (id == Guid.Empty)
             {
-                return NotFound();
+                var error = new
+                {
+                    value = "O parâmetro id deve possuir um valor",
+                    status = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError
+                };
+                Response.StatusCode = error.status;
+                return new ObjectResult(error);
             }
-            return new ObjectResult(item);
+            else
+            {
+                var item = _apoiadoRepository.Find(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(item);
+            }
         }
 
         /*[HttpGet]
@@ -85,9 +88,7 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]")]
         public IActionResult Create([FromBody] Apoiado apoiado)//[FromBody]dynamic body)
         {
-            //Apoiado apoiado = new Apoiado((string)body.nome);
-            //apoiados.InsertOne(apoiado);
-            //return apoiado;
+            
             if (apoiado == null)
             {
                 return BadRequest();
@@ -99,37 +100,37 @@ namespace Sani.Api.Controllers
         [HttpPut("api/[controller]/{id}")]
         //[HttpPut]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Update(System.Guid id, [FromBody]Apoiado item)
-        {
-            /*Apoiado apoiado = new Apoiado((string)body.nome);
-            apoiado.Id = ObjectId.Parse(id);
-
-            //voluntarios.UpdateOne(Builders<Voluntario>.Filter.Eq(p => p.Id, voluntario.Id), voluntario);
-            apoiados.ReplaceOne(Builders<Apoiado>.Filter.Eq(p => p.Id, apoiado.Id), apoiado);
-
-            return apoiado;
-            */
-            if (item == null || item.Id != id)
+        public IActionResult Update(Guid id, [FromBody]Apoiado apoiadoNew)
+        {   
+            if (apoiadoNew == null || apoiadoNew.Id != id)
             {
                 return BadRequest();
             }
 
-            var apoiado = _apoiadoRepository.Find(id);
-            if (apoiado == null)
+            var apoiadoFounded = _apoiadoRepository.Find(id);
+            if (apoiadoFounded == null)
             {
                 return NotFound();
             }
 
-            apoiado.Nome = item.Nome;
-
-            _apoiadoRepository.Update(apoiado);
-            return new NoContentResult();
+            ApoiadoAssertion apoiadoAssertion = new ApoiadoAssertion(apoiadoNew);
+            if (apoiadoAssertion.Notifications.HasNotifications())
+            {
+                Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError;
+                return new ObjectResult(apoiadoAssertion.Notifications.Notify());
+            }
+            else
+            {
+                //apoiado.Nome = apoiadoNew.Nome;
+                _apoiadoRepository.Update(apoiadoNew);
+                return new NoContentResult();
+            }
         }
 
         [HttpDelete("api/[controller]/{id}")]
         //[HttpDelete]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Delete(System.Guid id)
+        public IActionResult Delete(Guid id)
         {
             /*Apoiado apoiado = GetDetail(id);
             DeleteResult result = apoiados.DeleteOne(Builders<Apoiado>.Filter.Eq(p => p.Id, ObjectId.Parse(id)));
