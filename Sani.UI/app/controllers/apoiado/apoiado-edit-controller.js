@@ -1,34 +1,35 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('VoluntarioListCtrl', VoluntarioListCtrl);
+    angular.module('sani').controller('ApoiadoEditCtrl', ApoiadoEditCtrl);
 
-    VoluntarioListCtrl.$inject = ['VoluntarioFactory'];
+    ApoiadoEditCtrl.$inject = ['$routeParams', 'ApoiadoFactory'];
 
-    function VoluntarioListCtrl(VoluntarioFactory) {
+    function ApoiadoEditCtrl($routeParams, ApoiadoFactory) {
         var vm = this;
-        vm.voluntarios = [];
+        var id = $routeParams.id;
+
+        vm.apoiado = {};
 
         activate();
 
         function activate() {
-            getVoluntarios();
+            getApoiado();
         }
 
-        function getVoluntarios() {
-            VoluntarioFactory.get()
+        function getApoiado() {
+            ApoiadoFactory.getById(id)
                  .success(success)
                  .catch(fail);
 
             function success(response) {
-                vm.voluntarios = response;
+                vm.apoiado = response;
             }
 
             function fail(error) {
                 if (error.data === '') {
                     toastr.error(error.status, error.statusText)
                 }
-                else
-                {
+                else {
                     var erros = error.data;
                     for (var i = 0; i < erros.length; ++i) {
                         toastr.error(erros[i].value, 'Falha na Requisição')

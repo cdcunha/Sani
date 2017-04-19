@@ -1,0 +1,231 @@
+﻿<h3>Novo Apoiado</h3>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="form-group">
+            <label>Nome</label>
+            <input ng-model="vm.apoiado.nome"
+                   type="text"
+                   class="form-control"
+                   required />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row content">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nome</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="apoiado in vm.apoiados">
+                        <td class="text-center">{{ apoiado.id }}</td>
+                        <td>{{ apoiado.nome }}</td>
+                        <td class="text-center">
+                            <div class="button-group">
+                                <button class="btn btn-default btn-sm" ng-click="vm.loadApoiado(apoiado)"><i class="fa fa-edit">Editar</i></button>
+                                <button class="btn btn-danger btn-sm" ng-click="vm.removeApoiado(apoiado)"><i class="fa fa-remove">Apagar</i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">Apoiado</div>
+                <div class="panel-body">
+                    <div class="form-group" ng-class="{ 'has-error' : nome.$invalid }">
+                        <label for="nome">Nome</label>
+                        <input ng-model="vm.apoiado.nome"
+                               ng-minlength="3"
+                               ng-maxlength="100"
+                               type="text"
+                               class="form-control"
+                               id="nome"
+                               name="nome"
+                               placeholder="Nome do Apoiado"
+                               required />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : nomeMae.$invalid }">
+                        <label for="nomeMae">Nome da Mãe</label>
+                        <input ng-model="vm.apoiado.nomeMae"
+                               ng-maxlength="100"
+                               type="text"
+                               class="form-control"
+                               id="nomeMae"
+                               name="nomeMae"
+                               placeholder="Nome do Mãe" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : nomePai.$invalid }">
+                        <label for="nomePai">Nome do Pai</label>
+                        <input ng-model="vm.apoiado.nomePai"
+                               ng-maxlength="100"
+                               type="text"
+                               class="form-control"
+                               id="nomePai"
+                               name="nomePai"
+                               placeholder="Nome do Pai" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : logradouro.$invalid }">
+                        <label for="logradouro">Endereço</label>
+                        <input ng-model="vm.apoiado.logradouro"
+                               ng-maxlength="100"
+                               type="text"
+                               class="form-control"
+                               id="logradouro"
+                               name="logradouro"
+                               placeholder="Endereço"/>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : numeroLogradouro.$invalid }">
+                        <label for="numeroLogradouro">Número</label>
+                        <input ng-model="vm.apoiado.logradouro"
+                               ng-maxlength="200"
+                               type="text"
+                               class="form-control"
+                               id="numeroLogradouro"
+                               name="numeroLogradouro"
+                               placeholder="Número"/>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : complementoLogradouro.$invalid }">
+                        <label for="complementoLogradouro">Complemento</label>
+                        <input ng-model="vm.apoiado.complementoLogradouro"
+                               ng-maxlength="60"
+                               type="text"
+                               class="form-control"
+                               id="complementoLogradouro"
+                               name="complementoLogradouro"
+                               placeholder="Complemento"/>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : bairro.$invalid }">
+                        <label for="bairro">Bairro</label>
+                        <input ng-model="vm.apoiado.bairro"
+                               ng-maxlength="60"
+                               type="text"
+                               class="form-control"
+                               id="bairro"
+                               name="bairro"
+                               placeholder="Bairro" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : cidade.$invalid }">
+                        <label for="cidade">Cidade</label>
+                        <input ng-model="vm.apoiado.cidade"
+                               ng-maxlength="100"
+                               type="text"
+                               class="form-control"
+                               id="cidade"
+                               name="cidade"
+                               placeholder="Cidade" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : cidade.$invalid }">
+                        <label for="uf">UF</label>
+                        <input ng-model="vm.apoiado.uf"
+                               ng-maxlength="2"
+                               type="text"
+                               class="form-control"
+                               id="uf"
+                               name="uf"
+                               placeholder="UF" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : estadoCivil.$invalid }">
+                        <label for="estadoCivil">Estado Civil</label>
+                        <input ng-model="vm.apoiado.estadoCivil"
+                               ng-maxlength="50"
+                               type="text"
+                               class="form-control"
+                               id="estadoCivil"
+                               name="estadoCivil"
+                               placeholder="Estado Civil" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : qtdeDependentes.$invalid }">
+                        <label for="qtdeDependentes">Qtde Dependentes</label>
+                        <input ng-model="vm.apoiado.qtdeDependentes"
+                               min="0"
+                               ng-maxlength="30"
+                               type="number"
+                               class="form-control"
+                               id="qtdeDependentes"
+                               name="qtdeDependentes"
+                               placeholder="Qtde Dependentes" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : dataNascimento.$invalid }">
+                        <label for="dataNascimento">Data de Nascimento</label>
+                        <input ng-model="vm.apoiado.dataNascimento"
+                               ng-maxlength="10"
+                               type="date"
+                               class="form-control"
+                               id="dataNascimento"
+                               name="dataNascimento"
+                               placeholder="Data de Nascimento" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : ramoAtividade.$invalid }">
+                        <label for="ramoAtividade">Ramo Atividade</label>
+                        <input ng-model="vm.apoiado.ramoAtividade"
+                               ng-maxlength="50"
+                               type="text"
+                               class="form-control"
+                               id="ramoAtividade"
+                               name="ramoAtividade"
+                               placeholder="Ramo Atividade" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : possuiVinculoCarteira.$invalid }">
+                        <label for="possuiVinculoCarteira">Possui Vinculo na Carteira</label>
+                        <input ng-model="vm.apoiado.possuiVinculoCarteira"
+                               type="checkbox"
+                               class="form-control"
+                               id="possuiVinculoCarteira"
+                               name="possuiVinculoCarteira"
+                               placeholder="Possui Vinculo na Carteira" />
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : tempoExperiencia.$invalid }">
+                        <label for="tempoExperiencia">Tempo de Experiencia</label>
+                        <input ng-model="vm.apoiado.tempoExperiencia"
+                               min="0"
+                               ng-maxlength="30"
+                               type="number"
+                               class="form-control"
+                               id="tempoExperiencia"
+                               name="tempoExperiencia"
+                               placeholder="Tempo de Experiencia" />
+                    </div>
+                    
+                    <button type="button"
+                            class="btn btn-primary btn-block"
+                            ng-disabled="vm.apoiado.nome == ''"
+                            ng-click="vm.saveApoiado()">
+                        Salvar
+                    </button>
+                    <button type="button"
+                            class="btn btn-default btn-block"
+                            ng-show="vm.apoiado.id != 0"
+                            ng-click="vm.cancel()">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row  content">
+        <p class="text-center">
+            <button class="btn btn-primary btn-lg" ng-click="vm.save()">
+                Salvar
+            </button>
+        </p>
+        <p class="text-center">
+            <button type="button"
+                    class="btn btn-default btn-block"
+                    ng-show="vm.apoiado.id != 0"
+                    ng-click="vm.cancel()">
+                Cancelar
+            </button>
+        </p>
+</div>
+</div>

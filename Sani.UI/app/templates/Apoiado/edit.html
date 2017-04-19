@@ -1,0 +1,32 @@
+﻿<h3>Edição do Apoiado</h3>
+
+<div class="form-group">
+    <label>Apoiado</label>
+    <input ng-model="vm.apoiado.nome"
+           type="text"
+           class="form-control"
+           required />
+</div>
+
+<div class="form-group" ng-class="{ 'has-error' : description.$invalid }">
+    <label for="nome">Nome</label>
+    <input ng-model="vm.apoiado.nome"
+           type="text"
+           class="form-control"
+           required />
+</div>
+
+<br />
+<div class="clearfix"></div>
+
+<p class="text-center">
+    <button class="btn btn-primary btn-lg" ng-click="vm.save()">
+        Salvar
+    </button>
+    <button type="button"
+            class="btn btn-default btn-block"
+            ng-show="vm.apoiado.id != 0"
+            ng-click="vm.cancel()">
+        Cancelar
+    </button>
+</p>
