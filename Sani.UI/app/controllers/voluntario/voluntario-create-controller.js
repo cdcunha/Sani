@@ -10,6 +10,20 @@
         vm.voluntario = {
             id: '',
             nome: '',
+            telefone: '',
+            celular: '',
+            logradouro: '',
+            numeroLogradouro: '',
+            complementoLogradouro: '',
+            bairro: '',
+            cidade: '',
+            uf: '',
+            estadoCivil: '',
+            dataNascimento: '',
+            profissao: '',
+            ativo: '',
+            dataCriacao: '',
+            dataAlteracao: ''
         };
         vm.save = save;
 

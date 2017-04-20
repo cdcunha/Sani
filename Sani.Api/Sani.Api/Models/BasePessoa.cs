@@ -37,6 +37,12 @@ namespace Sani.Api.Models
         public string EstadoCivil { get; set; }
 
         [DataMember]
+        public string Telefone { get; set; }
+
+        [DataMember]
+        public string Celular { get; set; }
+
+        [DataMember]
         [BsonDateTimeOptions(DateOnly = true, Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataNascimento { get; set; }
 

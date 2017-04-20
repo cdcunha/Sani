@@ -23,10 +23,12 @@
             dataNascimento: '',
             ramoAtividade: '',
             possuiVinculoCarteira: false,
-            tempoExperiencia: 0
+            tempoExperiencia: 0,
+            observacao: ''
         };
         vm.save = save;
         vm.cancel = cancel;
+        
         
         function save() {
             ApoiadoFactory.post(vm.apoiado)
@@ -75,6 +77,8 @@
             vm.apoiado = {
                 id: 0,
                 name: '',
+                telefone: '',
+                celular: '',
                 nomeMae: '',
                 nomePai: '',
                 logradouro: '',
@@ -88,7 +92,11 @@
                 dataNascimento: '',
                 ramoAtividade: '',
                 possuiVinculoCarteira: false,
-                tempoExperiencia: 0
+                tempoExperiencia: 0,
+                observacao: '',
+                ativo: '',
+                dataCriacao: '',
+                dataAlteracao: ''
             };
         }
     };

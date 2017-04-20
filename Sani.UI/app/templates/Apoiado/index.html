@@ -1,6 +1,6 @@
 ﻿<h3 class="text-center">Membros Apoiados</h3>
 
-<a href="#/voluntarios/create" class="btn btn-success btn-lg pull-right">
+<a href="#/apoiados/create" class="btn btn-success btn-lg pull-right">
     <i class="fa fa-plus"></i> Adicionar
 </a>
 
@@ -14,11 +14,32 @@
     <tbody>
         <tr>
             <td colspan="6">
-                <input type="text" class="form-control" ng-model="filter" value="" placeholder="Filtrar..." />
+                <input type="text" class="form-control" ng-model="filter_apoiado" value="" placeholder="Filtrar..." />
             </td>
         </tr>
-        <tr ng-repeat="apoiado in vm.apoiados | filter: filter">
+        <tr ng-repeat="apoiado in vm.apoiados | filter: filter_apoiado">
+            <td class="text-left">{{ apoiado.id }}</td>
             <td class="text-left">{{ apoiado.nome }}</td>
+            <td class="text-left">{{ apoiado.telefone }}</td>
+            <td class="text-left">{{ apoiado.celular }}</td>
+            <td class="text-left">{{ apoiado.nomeMae }}</td>
+            <td class="text-left">{{ apoiado.nomePai }}</td>
+            <td class="text-left">{{ apoiado.logradouro }}</td>
+            <td class="text-left">{{ apoiado.numeroLogradouro }}</td>
+            <td class="text-left">{{ apoiado.complementoLogradouro }}</td>
+            <td class="text-left">{{ apoiado.bairro }}</td>
+            <td class="text-left">{{ apoiado.cidade }}</td>
+            <td class="text-left">{{ apoiado.uf }}</td>
+            <td class="text-left">{{ apoiado.estadoCivil }}</td>
+            <td class="text-left">{{ apoiado.qtdeDependentes }}</td>
+            <td class="text-left">{{ apoiado.dataNascimento }}</td>
+            <td class="text-left">{{ apoiado.ramoAtividade }}</td>
+            <td class="text-left">{{ apoiado.possuiVinculoCarteira }}</td>
+            <td class="text-left">{{ apoiado.tempoExperiencia }}</td>
+            <td class="text-left">{{ apoiado.observacao }}</td>
+            <td class="text-left">{{ apoiado.ativo }}</td>
+            <td class="text-left">{{ apoiado.dataCriacao }}</td>
+            <td class="text-left">{{ apoiado.dataAlteracao }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a href="#/apoiados/edit/{{ apoiado.id }}" class="btn btn-group btn-default btn-sm"><i class="fa fa-edit">Editar</i></a>

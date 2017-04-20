@@ -14,11 +14,26 @@
     <tbody>
         <tr>
             <td colspan="6">
-                <input type="text" class="form-control" ng-model="filter" value="" placeholder="Filtrar..." />
+                <input type="text" class="form-control" ng-model="filter_voluntario" value="" placeholder="Filtrar..." />
             </td>
         </tr>
-        <tr ng-repeat="voluntario in vm.voluntarios | filter: filter">
+        <tr ng-repeat="voluntario in vm.voluntarios | filter: filter_voluntario">
+            <td class="text-left">{{ voluntario.id }}</td>
             <td class="text-left">{{ voluntario.nome }}</td>
+            <td class="text-left">{{ voluntario.telefone }}</td>
+            <td class="text-left">{{ voluntario.celular }}</td>
+            <td class="text-left">{{ voluntario.logradouro }}</td>
+            <td class="text-left">{{ voluntario.numeroLogradouro }}</td>
+            <td class="text-left">{{ voluntario.complementoLogradouro }}</td>
+            <td class="text-left">{{ voluntario.bairro }}</td>
+            <td class="text-left">{{ voluntario.cidade }}</td>
+            <td class="text-left">{{ voluntario.uf }}</td>
+            <td class="text-left">{{ voluntario.estadoCivil }}</td>
+            <td class="text-left">{{ voluntario.dataNascimento }}</td>
+            <td class="text-left">{{ voluntario.profissao }}</td>
+            <td class="text-left">{{ voluntario.ativo }}</td>
+            <td class="text-left">{{ voluntario.dataCriacao }}</td>
+            <td class="text-left">{{ voluntario.dataAlteracao }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a href="#/voluntarios/edit/{{ voluntario.id }}" class="btn btn-group btn-default btn-sm"><i class="fa fa-edit">Editar</i></a>

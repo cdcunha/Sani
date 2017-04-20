@@ -22,6 +22,21 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/templates/apoiado/index.html'
             })
+            .when('/apoiados/create', {
+                controller: 'ApoiadoCreateCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'app/templates/apoiado/create.html'
+            })
+            .when('/apoiados/edit/:id', {
+                controller: 'ApoiadoEditCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'app/templates/apoiado/edit.html'
+            })
+            .when('/apoiados/remove/:id', {
+                controller: 'ApoiadoRemoveCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'app/templates/apoiado/edit.html'
+            })
             /****************************************
             * Vaga
             *****************************************/
