@@ -1,6 +1,10 @@
-﻿angular.module('sani')
+﻿angular.module('sani').config(['$locationProvider', function ($locationProvider) {
+    $locationProvider.hashPrefix('');
+}]);
+
+angular.module('sani')
     .config([
-        '$routeProvider', function($routeProvider) {
+        '$routeProvider', function ($routeProvider) {
             $routeProvider
             .when('/github/users/:id', {
                 templateUrl: 'app/templates/GitHub.Users/Users.html',
@@ -15,7 +19,7 @@
                 controller: 'GitHubUserRepoCtrl'
             })
             /****************************************
-            * Apoiado/Apoiado
+            * Apoiado
             *****************************************/
             .when('/apoiados', {
                 controller: 'ApoiadoCtrl',
@@ -38,7 +42,7 @@
                 templateUrl: 'app/templates/apoiado/edit.html'
             })
             /****************************************
-            * Vaga
+            * Voluntarios
             *****************************************/
             .when('/voluntarios', {
                 controller: 'VoluntarioListCtrl',

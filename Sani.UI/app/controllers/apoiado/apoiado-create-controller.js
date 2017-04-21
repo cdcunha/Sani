@@ -1,6 +1,14 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('ApoiadoCreateCtrl', ApoiadoCreateCtrl);
+    angular.module('sani').controller('ApoiadoCreateCtrl', ApoiadoCreateCtrl)
+        .directive('ngModel', function attributeNgModelDirective() {
+            return {
+                require: 'ngModel',
+                link: function (scope, el, attrs, ctrl) {
+                    ctrl.$attributes = attrs;
+                }
+            };
+        });
 
     ApoiadoCreateCtrl.$inject = ['$scope', '$location', 'ApoiadoFactory'];
 
