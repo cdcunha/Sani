@@ -67,6 +67,10 @@
     <script src="app/controllers/voluntario/voluntario-edit-controller.js"></script>
 
     <script>
+        toastr.options.timeOut = 0;
+        toastr.options.preventDuplicates = true;
+        toastr.options.closeButton = true;
+
         function goBack() {
             window.history.back();
         }
