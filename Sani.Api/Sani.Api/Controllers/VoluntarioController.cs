@@ -67,21 +67,23 @@ namespace Sani.Api.Controllers
         [HttpPost("api/[controller]")]
         //[ValidateAntiForgeryToken]
         //[Route("api/[controller]")]
-        public IActionResult Create([FromBody] Voluntario voluntario)//[FromBody]dynamic body)
+        public IActionResult Create([FromBody]dynamic body)//[FromBody] Voluntario voluntario)
         {
-            if (voluntario == null)
+            /*if (voluntario == null)
             {
                 return BadRequest();
             }
             _voluntarioRepository.Add(voluntario);
             return CreatedAtRoute("GetVoluntario", new { id = voluntario.Id }, voluntario);
+            */
+            return new NoContentResult();
         }
 
         [HttpPut("api/[controller]/{id}")]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Update(System.Guid id, [FromBody]Voluntario item)
+        public IActionResult Update(System.Guid id, [FromBody]dynamic body)//[FromBody]Voluntario item)
         {
-            if (item == null || item.Id != id)
+            /*if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
@@ -95,6 +97,8 @@ namespace Sani.Api.Controllers
             apoiado.Nome = item.Nome;
 
             _voluntarioRepository.Update(apoiado);
+            return new NoContentResult();
+            */
             return new NoContentResult();
         }
 

@@ -16,8 +16,8 @@
         var vm = this;
         vm.apoiados = [];
         vm.apoiado = {
-            id: '',
-            nome: '',
+            id: 0,
+            name: '',
             nomeMae: '',
             nomePai: '',
             logradouro: '',
@@ -27,12 +27,17 @@
             cidade: '',
             uf: '',
             estadoCivil: '',
+            telefone: '',
+            celular: '',
             qtdeDependentes: 0,
             dataNascimento: '',
             ramoAtividade: '',
             possuiVinculoCarteira: false,
             tempoExperiencia: 0,
-            observacao: ''
+            observacao: '',
+            ativo: '',
+            dataCriacao: '',
+            dataAlteracao: ''
         };
         vm.save = save;
         vm.cancel = cancel;
@@ -85,8 +90,6 @@
             vm.apoiado = {
                 id: 0,
                 name: '',
-                telefone: '',
-                celular: '',
                 nomeMae: '',
                 nomePai: '',
                 logradouro: '',
@@ -96,6 +99,8 @@
                 cidade: '',
                 uf: '',
                 estadoCivil: '',
+                telefone: '',
+                celular: '',
                 qtdeDependentes: 0,
                 dataNascimento: '',
                 ramoAtividade: '',

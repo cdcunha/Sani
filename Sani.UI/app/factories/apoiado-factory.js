@@ -4,6 +4,12 @@
 
     angular.module('sani').factory('ApoiadoFactory', ApoiadoFactory);
 
+    angular.module('sani').filter('filterYesNo', function () {
+        return function (input) {
+            return input ? 'Sim' : 'Não';
+        }
+    });
+
     //ApoiadoFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
 
     //function ApoiadoFactory($http, $rootScope, SETTINGS) {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Sani.Api.Assertions;
 using Sani.Api.Models;
 using Sani.Api.Repository;
@@ -85,13 +86,23 @@ namespace Sani.Api.Controllers
         [HttpPost("api/[controller]")]
         //[ValidateAntiForgeryToken]
         //[Route("api/[controller]")]
-        public IActionResult Create([FromBody] Apoiado apoiado)//[FromBody]dynamic body)
+        public IActionResult Create([FromBody]JObject body)//[FromBody] Apoiado apoiado)
         {
-            
-            if (apoiado == null)
+            if (string.IsNullOrEmpty(body.ToString()))
             {
                 return BadRequest();
             }
+            Apoiado apoiado = new Apoiado(((JValue)body.SelectToken("nome")).Value.ToString());
+            apoiado.DeserializeJson(body); //Converte Json para o objeto Apoiado
+
+            //Verifica se há inconsistência nos dados
+            ApoiadoAssertion apoiadoAssertion = new ApoiadoAssertion(apoiado, true);
+            if (apoiadoAssertion.Notifications.HasNotifications())
+            {
+                Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError;
+                return new ObjectResult(apoiadoAssertion.Notifications.Notify());
+            }
+
             _apoiadoRepository.Add(apoiado);
             return CreatedAtRoute("GetApoio", new { id = apoiado.Id }, apoiado);
         }
@@ -99,31 +110,34 @@ namespace Sani.Api.Controllers
         [HttpPut("api/[controller]/{id}")]
         //[HttpPut]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Update(Guid id, [FromBody]Apoiado apoiadoNew)
-        {   
-            if (apoiadoNew == null || apoiadoNew.Id != id)
+        public IActionResult Update(Guid id, [FromBody]dynamic body)//[FromBody]Apoiado apoiadoNew)
+        {
+            if (string.IsNullOrEmpty(body.ToString()))
             {
                 return BadRequest();
             }
-
+            
+            //Verifica se o registro existe na base
             var apoiadoFounded = _apoiadoRepository.Find(id);
             if (apoiadoFounded == null)
             {
                 return NotFound();
             }
 
+            Apoiado apoiadoNew = new Apoiado();
+            apoiadoNew = apoiadoFounded;
+            apoiadoNew.DeserializeJson(body); //Converte Json para o objeto Apoiado
+            apoiadoNew.DataAlteracao = System.DateTime.Now;
+
+            //Verifica se há inconsistência nos dados
             ApoiadoAssertion apoiadoAssertion = new ApoiadoAssertion(apoiadoNew);
             if (apoiadoAssertion.Notifications.HasNotifications())
             {
                 Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError;
                 return new ObjectResult(apoiadoAssertion.Notifications.Notify());
             }
-            else
-            {
-                //apoiado.Nome = apoiadoNew.Nome;
-                _apoiadoRepository.Update(apoiadoNew);
-                return new NoContentResult();
-            }
+            _apoiadoRepository.Update(apoiadoNew);
+            return new NoContentResult();
         }
 
         [HttpDelete("api/[controller]/{id}")]

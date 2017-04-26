@@ -21,6 +21,12 @@
 
             function success(response) {
                 vm.apoiados = response;
+                vm.apoiados.forEach(function (apoiado) {
+                    if (apoiado.dataNascimento != null) {
+                        var arDate = apoiado.dataNascimento.substring(0, 10).split('-');
+                        apoiado.dataNascimento = new Date(arDate[2] + '/' + arDate[1] + '/' + arDate[0]);
+                    }
+                });
             }
 
             function fail(error) {

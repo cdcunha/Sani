@@ -231,7 +231,8 @@
                                     class="form-control"
                                     id="dataNascimento"
                                     name="dataNascimento"
-                                    placeholder="Data de Nascimento" />
+                                    placeholder="Data de Nascimento"
+                                    required />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.dataNascimento.$error">
                                     <div ng-messages-include="app/templates/apoiado/messages.html"></div>
@@ -311,7 +312,7 @@
             </div>
         </form>
 
-        <pre>formApoiado = {{formApoiado | json}}</pre><br />
+        <!--<pre>formApoiado = {{formApoiado | json}}</pre><br />-->
 
     </div>
 </div>

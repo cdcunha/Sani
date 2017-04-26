@@ -47,6 +47,12 @@ namespace Sani.Api.Models
         public System.DateTime? DataNascimento { get; set; }
 
         [BsonConstructor]
+        public BasePessoa()
+        {
+            
+        }
+
+        [BsonConstructor]
         public BasePessoa(string nome) : base()
         {
             Nome = nome;

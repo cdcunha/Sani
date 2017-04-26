@@ -23,7 +23,8 @@ namespace Sani.Api.Models
         [DataMember]
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataAlteracao { get; set; }
-
+        
+        [BsonConstructor]
         public BaseModel()
         {
             Ativo = true;

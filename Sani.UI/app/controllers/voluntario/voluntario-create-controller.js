@@ -61,6 +61,9 @@
             }
 
             function fail(error){
+                toastr.options.timeOut = 0;
+                toastr.options.preventDuplicates = true;
+                toastr.options.closeButton = true;
                 if (error.status === 401)
                     toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
                 else {
