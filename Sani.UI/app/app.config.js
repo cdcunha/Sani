@@ -10,7 +10,7 @@ angular.module('sani')
             * Apoiado
             *****************************************/
             .when('/apoiados', {
-                controller: 'ApoiadoCtrl',
+                controller: 'ApoiadoListCtrl',
                 controllerAs: 'vm',
                 templateUrl: 'app/templates/apoiado/index.html'
             })

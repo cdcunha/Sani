@@ -226,13 +226,14 @@
                         <div class="form-group" ng-class="{ 'has-error' : dataNascimento.$invalid }">
                             <label for="dataNascimento">Data de Nascimento</label>
                             <input ng-model="vm.apoiado.dataNascimento"
-                                    ng-maxlength="10"
-                                    type="date"
-                                    class="form-control"
-                                    id="dataNascimento"
-                                    name="dataNascimento"
-                                    placeholder="Data de Nascimento"
-                                    required />
+                                   type="date"
+                                   min="{{vm.minBirthDate | date:'dd/MM/yyyy'}}"
+                                   max="{{vm.maxBirthDate | date:'dd/MM/yyyy'}}"
+                                   class="form-control"
+                                   id="dataNascimento"
+                                   name="dataNascimento"
+                                   placeholder="Data de Nascimento"
+                                   required />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.dataNascimento.$error">
                                     <div ng-messages-include="app/templates/apoiado/messages.html"></div>
@@ -245,6 +246,7 @@
                                     ng-maxlength="50"
                                     type="text"
                                     class="form-control"
+                                    min="endMinBirthDate" max="endMaxBirthDate"
                                     id="ramoAtividade"
                                     name="ramoAtividade"
                                     placeholder="Ramo Atividade" />
@@ -295,18 +297,19 @@
                             </div>
                         </div>
 
-                        <button type="button"
-                                class="btn btn-primary btn-block"
-                                ng-disabled="formApoiado.$invalid"
-                                ng-click="vm.save()">
-                            Salvar
-                        </button>
-                        <button type="button"
-                                class="btn btn-default btn-block"
-                                ng-show="vm.apoiado.id != 0"
-                                ng-click="vm.cancel()">
-                            Cancelar
-                        </button>
+                        <p class="text-center">
+                            <button type="button"
+                                    class="btn btn-primary btn-lg"
+                                    ng-disabled="formApoiado.$invalid"
+                                    ng-click="vm.save()">
+                                Salvar
+                            </button>
+                            <button type="button"
+                                    class="btn btn-default btn-lg"
+                                    ng-click="vm.cancel()">
+                                Cancelar
+                            </button>
+                        </p>
                     </div>
                 </div>
             </div>

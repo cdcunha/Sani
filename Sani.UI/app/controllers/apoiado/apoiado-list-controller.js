@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('ApoiadoCtrl', ApoiadoCtrl);
+    angular.module('sani').controller('ApoiadoListCtrl', ApoiadoListCtrl);
 
-    ApoiadoCtrl.$inject = ['ApoiadoFactory'];
+    ApoiadoListCtrl.$inject = ['ApoiadoFactory'];
 
-    function ApoiadoCtrl(ApoiadoFactory) {
+    function ApoiadoListCtrl(ApoiadoFactory) {
         var vm = this;
         vm.apoiados = [];
         

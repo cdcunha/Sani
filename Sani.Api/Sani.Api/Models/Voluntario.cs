@@ -62,11 +62,9 @@ namespace Sani.Api.Models
             DataNascimento = TokenToDateTime(json, "dataNascimento", "dd-MM-yyyy");
             //PossuiVinculoCarteira = Convert.ToBoolean(getTokenValue(json, "possuiVinculoCarteira"));
             //TempoExperiencia = int.Parse(getTokenValue(json, "tempoExperiencia"));
-            //Observacao = getTokenValue(json, "observacao");
+            Observacao = getTokenValue(json, "observacao");
             if (!string.IsNullOrEmpty(getTokenValue(json, "ativo")))
                 Ativo = Convert.ToBoolean(getTokenValue(json, "ativo"));
-            //DataCriacao = ((JValue)json.SelectToken("dataCriacao")).Value.ToString();
-            //DataAlteracao = ((JValue)json.SelectToken("nodataAlteracaome")).Value.ToString();
         }
     }
 }

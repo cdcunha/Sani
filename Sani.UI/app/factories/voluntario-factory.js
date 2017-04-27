@@ -5,6 +5,12 @@
 
     angular.module('sani').factory('VoluntarioFactory', VoluntarioFactory);
 
+    angular.module('sani').filter('filterYesNo', function () {
+        return function (input) {
+            return input ? 'Sim' : 'Não';
+        }
+    });
+
     //VoluntarioFactory.$inject = ['$http', '$rootScope', 'SETTINGS'];
 
     function VoluntarioFactory($http, $rootScope) {

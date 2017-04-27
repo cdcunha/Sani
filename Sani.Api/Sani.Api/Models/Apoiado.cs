@@ -29,10 +29,7 @@ namespace Sani.Api.Models
 
         [DataMember]
         public int TempoExperiencia { get; set; }
-
-        [DataMember]
-        public string Observacao { get; set; }
-
+        
         [BsonConstructor]
         public Apoiado() { }
 
@@ -88,8 +85,6 @@ namespace Sani.Api.Models
             Observacao = getTokenValue(json, "observacao");
             if (!string.IsNullOrEmpty(getTokenValue(json, "ativo")))
                 Ativo = Convert.ToBoolean(getTokenValue(json, "ativo"));
-            //DataCriacao = ((JValue)json.SelectToken("dataCriacao")).Value.ToString();
-            //DataAlteracao = ((JValue)json.SelectToken("nodataAlteracaome")).Value.ToString();
         }
     }
 }

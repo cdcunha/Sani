@@ -125,7 +125,7 @@ namespace Sani.Api.Controllers
             Voluntario voluntarioNew = new Voluntario();
             voluntarioNew = voluntarioFounded;
             voluntarioNew.DeserializeJson(body); //Converte Json para o objeto Apoiado
-            voluntarioNew.DataAlteracao = System.DateTime.Now;
+            voluntarioNew.SetDataAlteracao();
 
             //Verifica se há inconsistência nos dados
             VoluntarioAssertion voluntarioAssertion = new VoluntarioAssertion(voluntarioNew);

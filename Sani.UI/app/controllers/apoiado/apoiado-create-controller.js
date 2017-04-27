@@ -41,7 +41,12 @@
         };
         vm.save = save;
         vm.cancel = cancel;
-        
+
+        var today = new Date();
+        today.setYear(today.getFullYear() - 16);
+        vm.minBirthDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        today.setYear(today.getFullYear() - 90);
+        vm.maxBirthDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         
         function save() {
             ApoiadoFactory.post(vm.apoiado)

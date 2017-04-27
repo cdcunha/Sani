@@ -18,17 +18,22 @@ namespace Sani.Api.Models
 
         [DataMember]
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
-        public System.DateTime DataCriacao { get; set; }
+        public System.DateTime DataCriacao { get; private set; }
 
         [DataMember]
         [BsonDateTimeOptions(Kind = System.DateTimeKind.Local)]
-        public System.DateTime? DataAlteracao { get; set; }
+        public System.DateTime? DataAlteracao { get; private set; }
         
         [BsonConstructor]
         public BaseModel()
         {
             Ativo = true;
             DataCriacao = System.DateTime.Now;
+        }
+
+        public void SetDataAlteracao()
+        {
+            DataAlteracao = System.DateTime.Now;
         }
     }
 }

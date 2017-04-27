@@ -46,6 +46,9 @@ namespace Sani.Api.Models
         [BsonDateTimeOptions(DateOnly = true, Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataNascimento { get; set; }
 
+        [DataMember]
+        public string Observacao { get; set; }
+
         [BsonConstructor]
         public BasePessoa()
         {

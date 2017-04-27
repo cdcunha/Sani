@@ -129,7 +129,7 @@ namespace Sani.Api.Controllers
             Apoiado apoiadoNew = new Apoiado();
             apoiadoNew = apoiadoFounded;
             apoiadoNew.DeserializeJson(body); //Converte Json para o objeto Apoiado
-            apoiadoNew.DataAlteracao = System.DateTime.Now;
+            apoiadoNew.SetDataAlteracao();
 
             //Verifica se há inconsistência nos dados
             ApoiadoAssertion apoiadoAssertion = new ApoiadoAssertion(apoiadoNew);

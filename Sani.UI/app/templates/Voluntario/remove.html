@@ -1,0 +1,49 @@
+﻿<h3>Remover Voluntario</h3>
+
+<div class="container-fluid">
+    <div class="row content">
+        <form name="formVoluntario">
+            <div class="col-md4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">Remover Voluntario?</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="id">Id</label>
+                            <input ng-model="vm.voluntario.id"
+                                   type="text"
+                                   class="form-control"
+                                   id="id"
+                                   name="id"
+                                   readonly />
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : nome.$invalid }">
+                            <label for="nome">Nome</label>
+                            <input ng-model="vm.voluntario.nome"
+                                   ng-minlength="3"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="nome"
+                                   name="nome"
+                                   placeholder="Nome do Voluntário"
+                                   readonly />
+                        </div>
+
+                        <br />
+                        <div class="clearfix"></div>
+
+                        <p class="text-center">
+                            <button class="btn btn-primary btn-lg" ng-click="vm.remove()">
+                                Remover
+                            </button>
+                            <button class="btn btn-secondary btn-lg" ng-click="vm.cancel()" ng-show="vm.voluntario.id != 0">
+                                Cancelar
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

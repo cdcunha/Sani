@@ -2,18 +2,7 @@
 
 <div class="container-fluid">
     <div class="row content">
-        <div class="form-group">
-            <label>Nome</label>
-            <input ng-model="vm.voluntario.nome"
-                   type="text"
-                   class="form-control"
-                   required />
-        </div>
-    </div>
-
-    <br />
-
-    <div class="row content">
+        <!--
         <div class="col-md-8">
             <table class="table table-striped">
                 <thead>
@@ -37,38 +26,205 @@
                 </tbody>
             </table>
         </div>
+        -->
 
-        <div class="col-md4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">Voluntário</div>
-                <div class="panel-body">
-                    <div class="form-group" ng-class="{ 'has-error' : description.$invalid }">
-                        <label for="description">Nome</label>
-                        <input ng-model="vm.voluntario.nome"
-                               ng-minlength="3"
-                               ng-maxlength="20"
-                               type="text"
-                               class="form-control"
-                               id="description"
-                               name="description"
-                               placeholder="Nome do Voluntário"
-                               required />
+        <form name="formVoluntario">
+            <div class="col-md4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">Voluntario</div>
+                    <div class="panel-body">
+                        <div class="form-group" ng-class="{ 'has-error' : nome.$invalid }">
+                            <label for="nome">Nome</label>
+                            <input ng-model="vm.voluntario.nome"
+                                   ng-minlength="3"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="nome"
+                                   name="nome"
+                                   placeholder="Nome do Voluntário"
+                                   required />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.nome.$error">
+                                    <div ng-repeat="errorMessage in errorMessages">
+                                        <div ng-message-exp="errorMessage.type">{{ errorMessage.text }}</div>
+                                    </div>
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : profissao.$invalid }">
+                            <label for="profissao">Profissão</label>
+                            <input ng-model="vm.voluntario.profissao"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="profissao"
+                                   name="profissao"
+                                   placeholder="Profissão" 
+                                   required />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.profissao.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : logradouro.$invalid }">
+                            <label for="logradouro">Endereço</label>
+                            <input ng-model="vm.voluntario.logradouro"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="logradouro"
+                                   name="logradouro"
+                                   placeholder="Endereço" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.logradouro.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : numeroLogradouro.$invalid }">
+                            <label for="numeroLogradouro">Número</label>
+                            <input ng-model="vm.voluntario.numeroLogradouro"
+                                   ng-maxlength="20"
+                                   type="text"
+                                   class="form-control"
+                                   id="numeroLogradouro"
+                                   name="numeroLogradouro"
+                                   placeholder="Número" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.numeroLogradouro.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : complementoLogradouro.$invalid }">
+                            <label for="complementoLogradouro">Complemento</label>
+                            <input ng-model="vm.voluntario.complementoLogradouro"
+                                   ng-maxlength="60"
+                                   type="text"
+                                   class="form-control"
+                                   id="complementoLogradouro"
+                                   name="complementoLogradouro"
+                                   placeholder="Complemento" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.complementoLogradouro.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : bairro.$invalid }">
+                            <label for="bairro">Bairro</label>
+                            <input ng-model="vm.voluntario.bairro"
+                                   ng-maxlength="60"
+                                   type="text"
+                                   class="form-control"
+                                   id="bairro"
+                                   name="bairro"
+                                   placeholder="Bairro" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.bairro.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : cidade.$invalid }">
+                            <label for="cidade">Cidade</label>
+                            <input ng-model="vm.voluntario.cidade"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="cidade"
+                                   name="cidade"
+                                   placeholder="Cidade" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.cidade.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : uf.$invalid }">
+                            <label for="uf">UF</label>
+                            <input ng-model="vm.voluntario.uf"
+                                   maxlength="2"
+                                   ng-maxlength="2"
+                                   type="text"
+                                   class="form-control"
+                                   id="uf"
+                                   name="uf"
+                                   placeholder="UF" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.uf.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : estadoCivil.$invalid }">
+                            <label for="estadoCivil">Estado Civil</label>
+                            <input ng-model="vm.voluntario.estadoCivil"
+                                   ng-maxlength="50"
+                                   type="text"
+                                   class="form-control"
+                                   id="estadoCivil"
+                                   name="estadoCivil"
+                                   placeholder="Estado Civil" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.estadoCivil.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : dataNascimento.$invalid }">
+                            <label for="dataNascimento">Data de Nascimento</label>
+                            <input ng-model="vm.apoiado.dataNascimento"
+                                   type="date"
+                                   class="form-control"
+                                   min="{{vm.minBirthDate | date:'dd/MM/yyyy'}}"
+                                   max="{{vm.maxBirthDate | date:'dd/MM/yyyy'}}"
+                                   id="dataNascimento"
+                                   name="dataNascimento"
+                                   placeholder="Data de Nascimento"
+                                   required />
+                            <div class="alert-danger">
+                                <div ng-messages="formApoiado.dataNascimento.$error">
+                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : observacao.$invalid }">
+                            <label for="observacao">Observação</label>
+                            <input ng-model="vm.voluntario.observacao"
+                                   ng-maxlength="2000"
+                                   type="text"
+                                   class="form-control"
+                                   id="observacao"
+                                   name="observacao"
+                                   placeholder="Observação" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.observacao.$error">
+                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-center">
+                            <button type="button"
+                                    class="btn btn-primary btn-lg"
+                                    ng-disabled="formVoluntario.$invalid"
+                                    ng-click="vm.save()">
+                                Salvar
+                            </button>
+                            <button type="button"
+                                    class="btn btn-default btn-lg"
+                                    ng-click="vm.cancel()">
+                                Cancelar
+                            </button>
+                        </p>
                     </div>
-
-                    <button type="button"
-                            class="btn btn-primary btn-block"
-                            ng-disabled="vm.voluntario.nome == ''"
-                            ng-click="vm.save()">
-                        Salvar
-                    </button>
-                    <button type="button"
-                            class="btn btn-default btn-block"
-                            ng-show="vm.voluntario.id != 0"
-                            ng-click="vm.cancel()">
-                        Cancelar
-                    </button>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>

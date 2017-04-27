@@ -21,11 +21,13 @@
             estadoCivil: '',
             dataNascimento: '',
             profissao: '',
+            observacao: '',
             ativo: '',
             dataCriacao: '',
             dataAlteracao: ''
         };
         vm.save = save;
+        vm.cancel = cancel;
 
         /*activate();
 
@@ -89,5 +91,31 @@
         };
         angular.element(document.querySelector('#file')).on('change', handleFileSelect);
         */
+
+        function cancel() {
+            clearVoluntario();
+        }
+
+        function clearVoluntario() {
+            vm.voluntario = {
+                id: '',
+                nome: '',
+                telefone: '',
+                celular: '',
+                logradouro: '',
+                numeroLogradouro: '',
+                complementoLogradouro: '',
+                bairro: '',
+                cidade: '',
+                uf: '',
+                estadoCivil: '',
+                dataNascimento: '',
+                profissao: '',
+                observacao: '',
+                ativo: '',
+                dataCriacao: '',
+                dataAlteracao: ''
+            };
+        }
     };
 })();
