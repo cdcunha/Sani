@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using Sani.Api.Assertions;
 using Sani.Api.Models;
 using Sani.Api.Repository;
+using System;
 using System.Collections.Generic;
 
 namespace Sani.Api.Controllers
@@ -24,14 +27,27 @@ namespace Sani.Api.Controllers
 
         [HttpGet("api/[controller]/{id}", Name = "GetVoluntario")]
         //[Route("api/[controller]/{id}")]
-        public IActionResult GetDetail(System.Guid id)
+        public IActionResult GetById(System.Guid id)
         {
-            var item = _voluntarioRepository.Find(id);
-            if (item == null)
+            if (id == Guid.Empty)
             {
-                return NotFound();
+                var error = new
+                {
+                    value = "O parâmetro id deve possuir um valor",
+                    status = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError
+                };
+                Response.StatusCode = error.status;
+                return new ObjectResult(error);
             }
-            return new ObjectResult(item);
+            else
+            {
+                var item = _voluntarioRepository.Find(id);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(item);
+            }
         }
 
         /*[HttpGet]
@@ -69,51 +85,74 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]")]
         public IActionResult Create([FromBody]dynamic body)//[FromBody] Voluntario voluntario)
         {
-            /*if (voluntario == null)
+            if (string.IsNullOrEmpty(body.ToString()))
             {
                 return BadRequest();
             }
+            Voluntario voluntario = new Voluntario(((JValue)body.SelectToken("nome")).Value.ToString());
+            voluntario.DeserializeJson(body); //Converte Json para o objeto Apoiado
+
+            //Verifica se há inconsistência nos dados
+            VoluntarioAssertion voluntarioAssertion = new VoluntarioAssertion(voluntario, true);
+            if (voluntarioAssertion.Notifications.HasNotifications())
+            {
+                Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError;
+                return new ObjectResult(voluntarioAssertion.Notifications.Notify());
+            }
+
             _voluntarioRepository.Add(voluntario);
-            return CreatedAtRoute("GetVoluntario", new { id = voluntario.Id }, voluntario);
-            */
-            return new NoContentResult();
+            //return CreatedAtRoute("GetApoio", new { id = apoiado.Id }, apoiado);
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status201Created;
+            return new ObjectResult(voluntario);
         }
 
         [HttpPut("api/[controller]/{id}")]
         //[Route("api/[controller]/{id}")]
-        public IActionResult Update(System.Guid id, [FromBody]dynamic body)//[FromBody]Voluntario item)
+        public IActionResult Update(Guid id, [FromBody]dynamic body)//[FromBody]Voluntario item)
         {
-            /*if (item == null || item.Id != id)
+            if (string.IsNullOrEmpty(body.ToString()))
             {
                 return BadRequest();
             }
 
-            var apoiado = _voluntarioRepository.Find(id);
-            if (apoiado == null)
+            //Verifica se o registro existe na base
+            var voluntarioFounded = _voluntarioRepository.Find(id);
+            if (voluntarioFounded == null)
             {
                 return NotFound();
             }
 
-            apoiado.Nome = item.Nome;
+            Voluntario voluntarioNew = new Voluntario();
+            voluntarioNew = voluntarioFounded;
+            voluntarioNew.DeserializeJson(body); //Converte Json para o objeto Apoiado
+            voluntarioNew.DataAlteracao = System.DateTime.Now;
 
-            _voluntarioRepository.Update(apoiado);
-            return new NoContentResult();
-            */
-            return new NoContentResult();
+            //Verifica se há inconsistência nos dados
+            VoluntarioAssertion voluntarioAssertion = new VoluntarioAssertion(voluntarioNew);
+            if (voluntarioAssertion.Notifications.HasNotifications())
+            {
+                Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError;
+                return new ObjectResult(voluntarioAssertion.Notifications.Notify());
+            }
+            _voluntarioRepository.Update(voluntarioNew);
+            //return new NoContentResult();
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status200OK;
+            return new ObjectResult(voluntarioNew);
         }
 
         [HttpDelete("api/[controller]/{id}")]
         //[Route("api/[controller]/{id}")]
         public IActionResult Delete(System.Guid id)
         {
-            var apoiado = _voluntarioRepository.Find(id);
-            if (apoiado == null)
+            var voluntario = _voluntarioRepository.Find(id);
+            if (voluntario == null)
             {
                 return NotFound();
             }
 
             _voluntarioRepository.Remove(id);
-            return new NoContentResult();
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status200OK;
+            return new ObjectResult(voluntario);
         }
     }
 }

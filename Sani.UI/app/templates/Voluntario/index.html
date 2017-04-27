@@ -7,33 +7,30 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th class="text-center">Nome</th>
+            <th class="text-left">Nome</th>
+            <th class="text-left">Telefone</th>
+            <th class="text-left">Celular</th>
+            <th class="text-left">Profissão</th>
+            <th class="text-left">Ativo</th>
+            <th class="text-left">Criado em</th>
+            <th class="text-left">Alterado em</th>
             <th class="text-center"></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="6">
+            <td colspan="8">
                 <input type="text" class="form-control" ng-model="filter_voluntario" value="" placeholder="Filtrar..." />
             </td>
         </tr>
         <tr ng-repeat="voluntario in vm.voluntarios | filter: filter_voluntario">
-            <td class="text-left">{{ voluntario.id }}</td>
             <td class="text-left">{{ voluntario.nome }}</td>
             <td class="text-left">{{ voluntario.telefone }}</td>
             <td class="text-left">{{ voluntario.celular }}</td>
-            <td class="text-left">{{ voluntario.logradouro }}</td>
-            <td class="text-left">{{ voluntario.numeroLogradouro }}</td>
-            <td class="text-left">{{ voluntario.complementoLogradouro }}</td>
-            <td class="text-left">{{ voluntario.bairro }}</td>
-            <td class="text-left">{{ voluntario.cidade }}</td>
-            <td class="text-left">{{ voluntario.uf }}</td>
-            <td class="text-left">{{ voluntario.estadoCivil }}</td>
-            <td class="text-left">{{ voluntario.dataNascimento }}</td>
             <td class="text-left">{{ voluntario.profissao }}</td>
-            <td class="text-left">{{ voluntario.ativo }}</td>
-            <td class="text-left">{{ voluntario.dataCriacao }}</td>
-            <td class="text-left">{{ voluntario.dataAlteracao }}</td>
+            <td class="text-left">{{ voluntario.ativo | filterYesNo }}</td>
+            <td class="text-left">{{ voluntario.dataCriacao | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td class="text-left">{{ voluntario.dataAlteracao | date: 'dd/MM/yyyy HH:mm' }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a href="#/voluntarios/edit/{{ voluntario.id }}" class="btn btn-group btn-default btn-sm"><i class="fa fa-edit">Editar</i></a>

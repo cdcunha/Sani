@@ -6,18 +6,6 @@ angular.module('sani')
     .config([
         '$routeProvider', function ($routeProvider) {
             $routeProvider
-            .when('/github/users/:id', {
-                templateUrl: 'app/templates/GitHub.Users/Users.html',
-                controller: 'GitHubUsersCtrl',
-            })
-            .when('/github/user/detail/:login', {
-                templateUrl: 'app/templates/GitHub.Users/Details.html',
-                controller: 'GitHubUserDetCtrl'
-            })
-            .when('/github/users/repo/:login', {
-                templateUrl: 'app/templates/GitHub.Users/Repo.html',
-                controller: 'GitHubUserRepoCtrl'
-            })
             /****************************************
             * Apoiado
             *****************************************/
@@ -39,7 +27,7 @@ angular.module('sani')
             .when('/apoiados/remove/:id', {
                 controller: 'ApoiadoRemoveCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'app/templates/apoiado/edit.html'
+                templateUrl: 'app/templates/apoiado/remove.html'
             })
             /****************************************
             * Voluntarios

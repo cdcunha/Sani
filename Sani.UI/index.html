@@ -52,24 +52,36 @@
 
     <script src="app/config.js"></script>
 
-    <script src="app/controllers/github/githubuser-list-controller.js"></script>
-    <script src="app/controllers/github/githubuser-detail-controller.js"></script>
-    <script src="app/controllers/github/githubuser-repo-controller.js"></script>
-
     <script src="app/factories/apoiado-factory.js"></script>
     <script src="app/factories/voluntario-factory.js"></script>
 
     <script src="app/controllers/apoiado/apoiado-list-controller.js"></script>
     <script src="app/controllers/apoiado/apoiado-create-controller.js"></script>
     <script src="app/controllers/apoiado/apoiado-edit-controller.js"></script>
+    <script src="app/controllers/apoiado/apoiado-remove-controller.js"></script>
     <script src="app/controllers/voluntario/voluntario-list-controller.js"></script>
     <script src="app/controllers/voluntario/voluntario-create-controller.js"></script>
     <script src="app/controllers/voluntario/voluntario-edit-controller.js"></script>
 
     <script>
-        toastr.options.timeOut = 0;
-        toastr.options.preventDuplicates = true;
-        toastr.options.closeButton = true;
+        toastr.options = {
+            //"closeButton": false,
+            //"debug": false,
+            //"newestOnTop": false,
+            //"progressBar": false,
+            //"positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            //"onclick": null,
+            //"showDuration": "300",
+            //"hideDuration": "1000",
+            "timeOut": 0,
+            "extendedTimeOut": 0,
+            //"showEasing": "swing",
+            //"hideEasing": "linear",
+            //"showMethod": "fadeIn",
+            //"hideMethod": "fadeOut",
+            "tapToDismiss": false
+        }
 
         function goBack() {
             window.history.back();

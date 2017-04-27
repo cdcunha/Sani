@@ -25,13 +25,13 @@
 
             function fail(error) {
                 if (error.data === '') {
-                    toastr.error(error.status, error.statusText)
+                    toastr["error"](error.status + "<br/><button type='button' class='btn clear'>Ok</button>", error.statusText);
                 }
                 else
                 {
                     var erros = error.data;
                     for (var i = 0; i < erros.length; ++i) {
-                        toastr.error(erros[i].value, 'Falha na Requisição')
+                        toastr["error"](erros[i].value + "<br/><button type='button' class='btn clear'>Ok</button>", 'Falha na Requisição');
                     }
                 }
             }

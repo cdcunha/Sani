@@ -46,6 +46,25 @@ namespace Sani.Api.Models
                 : "";
         }
 
+        private DateTime? TokenToDateTime(JObject json, string key, string format)
+        {
+            string strDate = getTokenValue(json, key);
+            if (!string.IsNullOrEmpty(strDate))
+            {
+                if (format.Length == 10)
+                    strDate = strDate.Substring(0, 10);
+
+                if (strDate.Contains("/"))
+                    strDate = strDate.Replace('/', '-');
+
+                return DateTime.ParseExact(strDate, format, CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void DeserializeJson(JObject json)
         {
             //Id = ((JValue)json.SelectToken("bairro")).Value.ToBson();
@@ -62,8 +81,7 @@ namespace Sani.Api.Models
             Telefone = getTokenValue(json, "telefone");
             Celular = getTokenValue(json, "celular");
             QtdeDependentes = int.Parse(getTokenValue(json, "qtdeDependentes"));
-            if (!string.IsNullOrEmpty(getTokenValue(json, "dataNascimento")))
-                DataNascimento = DateTime.ParseExact(getTokenValue(json, "dataNascimento").Substring(0,10), "yyyy-dd-MM", CultureInfo.InvariantCulture);
+            DataNascimento = TokenToDateTime(json, "dataNascimento", "dd-MM-yyyy");
             RamoAtividade = getTokenValue(json, "ramoAtividade");
             PossuiVinculoCarteira = Convert.ToBoolean(getTokenValue(json, "possuiVinculoCarteira"));
             TempoExperiencia = int.Parse(getTokenValue(json, "tempoExperiencia"));

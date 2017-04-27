@@ -44,9 +44,9 @@
 
             function fail(error) {
                 if (error.status == 401)
-                    toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
+                    toastr["error"]("Você não tem permissão para ver esta página<br/><button type='button' class='btn clear'>Ok</button>", 'Requisição não autorizada');
                 else
-                    toastr.error('Sua requisição não pode ser processada', 'Falha na Requisição');
+                    toastr["error"]("Sua requisição não pode ser processada<br/><button type='button' class='btn clear'>Ok</button>", 'Requisição na Requisição');
             }
         }*/
 
@@ -56,24 +56,21 @@
                 .catch(fail);
 
             function success(response) {
-                toastr.success('Voluntário <strong>' + response.name + '</strong> cadastrado com sucesso', 'Voluntário Cadastrado');
+                toastr["success"]("Voluntário <strong>" + response.nome + "</strong> cadastrado com sucesso<br/><button type='button' class='btn clear'>Ok</button>", "Voluntário Cadastrado");
                 $location.path('/voluntarios');
             }
 
             function fail(error){
-                toastr.options.timeOut = 0;
-                toastr.options.preventDuplicates = true;
-                toastr.options.closeButton = true;
                 if (error.status === 401)
-                    toastr.error('Você não tem permissão para ver esta página', 'Requisição não autorizada');
+                    toastr["error"]("Você não tem permissão para ver esta página<br/><button type='button' class='btn clear'>Ok</button>", 'Requisição não autorizada');
                 else {
                     if (error.data === '') {
-                        toastr.error(error.status, error.statusText)
+                        toastr["error"](error.status + "<br/><button type='button' class='btn clear'>Ok</button>", error.statusText);
                     }
                     else {
                         var erros = error.data;
                         for (var i = 0; i < erros.length; ++i) {
-                            toastr.error(erros[i].value, 'Falha na Requisição')
+                            toastr["error"](erros[i].value + "<br/><button type='button' class='btn clear'>Ok</button>", 'Falha na Requisição');
                         }
                     }
                 }   

@@ -22,7 +22,7 @@ namespace Sani.Api.Controllers
         //[Route("api/[controller]")]
         public IEnumerable<Apoiado> GetAll()
         {
-                return _apoiadoRepository.GetAll();
+            return _apoiadoRepository.GetAll();
         }
 
         [HttpGet("api/[controller]/{id}", Name = "GetApoio")]
@@ -104,7 +104,9 @@ namespace Sani.Api.Controllers
             }
 
             _apoiadoRepository.Add(apoiado);
-            return CreatedAtRoute("GetApoio", new { id = apoiado.Id }, apoiado);
+            //return CreatedAtRoute("GetApoio", new { id = apoiado.Id }, apoiado);
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status201Created;
+            return new ObjectResult(apoiado);
         }
 
         [HttpPut("api/[controller]/{id}")]
@@ -137,7 +139,9 @@ namespace Sani.Api.Controllers
                 return new ObjectResult(apoiadoAssertion.Notifications.Notify());
             }
             _apoiadoRepository.Update(apoiadoNew);
-            return new NoContentResult();
+            //return new NoContentResult();
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status200OK;
+            return new ObjectResult(apoiadoNew);
         }
 
         [HttpDelete("api/[controller]/{id}")]
@@ -162,7 +166,9 @@ namespace Sani.Api.Controllers
             }
 
             _apoiadoRepository.Remove(id);
-            return new NoContentResult();
+            //return new NoContentResult();
+            Response.StatusCode = Microsoft.AspNetCore.Http.StatusCodes.Status200OK;
+            return new ObjectResult(apoiado);
         }
     }
 }

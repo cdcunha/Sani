@@ -1,16 +1,16 @@
 ﻿(function () {
     'use strict';
-    angular.module('sani').controller('ApoiadoEditCtrl', ApoiadoEditCtrl);
+    angular.module('sani').controller('ApoiadoRemoveCtrl', ApoiadoRemoveCtrl);
 
-    ApoiadoEditCtrl.$inject = ['$routeParams', '$filter', '$location', 'ApoiadoFactory'];
+    ApoiadoRemoveCtrl.$inject = ['$routeParams', '$filter', '$location', 'ApoiadoFactory'];
 
-    function ApoiadoEditCtrl($routeParams, $filter, $location, ApoiadoFactory) {
+    function ApoiadoRemoveCtrl($routeParams, $filter, $location, ApoiadoFactory) {
         var vm = this;
         var id = $routeParams.id;
         vm.apoiado = {};
 
         activate();
-        vm.save = save;
+        vm.remove = remove;
         vm.cancel = cancel;
 
         function activate() {
@@ -41,20 +41,20 @@
             }
         }
 
-        function save() {
-            ApoiadoFactory.put(vm.apoiado)
+        function remove() {
+            ApoiadoFactory.remove(vm.apoiado)
                 .success(success)
                 .catch(fail);
 
             function success(response) {
-                toastr["success"]("Apoiado <strong>" + response.nome + "</strong> cadastrado com sucesso<br/><button type='button' class='btn clear'>Ok</button>", "Apoiado Cadastrado");
+                toastr["success"]("Apoiado <strong>" + response.nome + "</strong> removido com sucesso<br/><button type='button' class='btn clear'>Ok</button>", 'Apoiado Removido');
                 $location.path('/apoiados');
             }
 
             function fail(error) {
-                if (error.status === 401) {
+                if (error.status === 401)
                     toastr["error"]("Você não tem permissão para ver esta página<br/><button type='button' class='btn clear'>Ok</button>", 'Requisição não autorizada');
-                } else {
+                else {
                     if (error.data === '') {
                         toastr["error"](error.status + "<br/><button type='button' class='btn clear'>Ok</button>", error.statusText);
                     }
