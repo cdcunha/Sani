@@ -49,7 +49,7 @@
                                     <div ng-repeat="errorMessage in errorMessages">
                                         <div ng-message-exp="errorMessage.type">{{ errorMessage.text }}</div>
                                     </div>
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                             <!--<span style="color: red" ng-show="formApoiado.nome.$invalid">
@@ -76,7 +76,7 @@
                                     placeholder="Nome do Mãe" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.nomeMae.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                             <!--<span style="color: red" ng-show="formApoiado.nomeMae.$dirty && formApoiado.nomeMae.$invalid">
@@ -97,7 +97,52 @@
                                     placeholder="Nome do Pai" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.nomePai.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : telefone.$invalid }">
+                            <label for="telefone">Telefone</label>
+                            <input ng-model="vm.apoiado.telefone"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="telefone"
+                                   name="telefone"
+                                   placeholder="Telefone" />
+                            <div class="alert-danger">
+                                <div ng-messages="formApoiado.telefone.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : celular.$invalid }">
+                            <label for="celular">Celular</label>
+                            <input ng-model="vm.apoiado.celular"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="celular"
+                                   name="celular"
+                                   placeholder="Celular" />
+                            <div class="alert-danger">
+                                <div ng-messages="formApoiado.celular.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : email.$invalid }">
+                            <label for="email">Endereço</label>
+                            <input ng-model="vm.apoiado.email"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder="E-mail" />
+                            <div class="alert-danger">
+                                <div ng-messages="formApoiado.email.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +157,7 @@
                                     placeholder="Endereço" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.logradouro.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +172,7 @@
                                     placeholder="Número" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.numeroLogradouro.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +187,7 @@
                                     placeholder="Complemento" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.complementoLogradouro.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +202,7 @@
                                     placeholder="Bairro" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.bairro.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +217,7 @@
                                     placeholder="Cidade" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.cidade.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +233,7 @@
                                     placeholder="UF" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.uf.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +248,7 @@
                                     placeholder="Estado Civil" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.estadoCivil.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +264,7 @@
                                     placeholder="Qtde Dependentes" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.qtdeDependentes.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +281,7 @@
                                    required />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.dataNascimento.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -252,7 +297,7 @@
                                     placeholder="Ramo Atividade" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.ramoAtividade.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +322,7 @@
                                     placeholder="Tempo de Experiencia em anos" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.tempoExperiencia.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +337,7 @@
                                     placeholder="Observação" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.observacao.$error">
-                                    <div ng-messages-include="app/templates/apoiado/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>

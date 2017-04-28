@@ -43,6 +43,9 @@ namespace Sani.Api.Models
         public string Celular { get; set; }
 
         [DataMember]
+        public string Email { get; set; }
+
+        [DataMember]
         [BsonDateTimeOptions(DateOnly = true, Kind = System.DateTimeKind.Local)]
         public System.DateTime? DataNascimento { get; set; }
 

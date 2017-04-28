@@ -33,7 +33,7 @@
                                     <div ng-repeat="errorMessage in errorMessages">
                                         <div ng-message-exp="errorMessage.type">{{ errorMessage.text }}</div>
                                     </div>
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,52 @@
                                    placeholder="Profissão" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.profissao.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : telefone.$invalid }">
+                            <label for="telefone">Telefone</label>
+                            <input ng-model="vm.voluntario.telefone"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="telefone"
+                                   name="telefone"
+                                   placeholder="Telefone" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.telefone.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : celular.$invalid }">
+                            <label for="celular">Celular</label>
+                            <input ng-model="vm.voluntario.celular"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="celular"
+                                   name="celular"
+                                   placeholder="Celular" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.celular.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : email.$invalid }">
+                            <label for="email">Endereço</label>
+                            <input ng-model="vm.voluntario.email"
+                                   ng-maxlength="100"
+                                   type="text"
+                                   class="form-control"
+                                   id="email"
+                                   name="email"
+                                   placeholder="E-mail" />
+                            <div class="alert-danger">
+                                <div ng-messages="formVoluntario.email.$error">
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +108,7 @@
                                    placeholder="Endereço" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.logradouro.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +123,7 @@
                                    placeholder="Número" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.numeroLogradouro.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +138,7 @@
                                    placeholder="Complemento" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.complementoLogradouro.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +153,7 @@
                                    placeholder="Bairro" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.bairro.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +168,7 @@
                                    placeholder="Cidade" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.cidade.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +184,7 @@
                                    placeholder="UF" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.uf.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +199,7 @@
                                    placeholder="Estado Civil" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.estadoCivil.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +215,7 @@
                                    required />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.dataNascimento.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +230,7 @@
                                    placeholder="Observação" />
                             <div class="alert-danger">
                                 <div ng-messages="formVoluntario.observacao.$error">
-                                    <div ng-messages-include="app/templates/voluntario/messages.html"></div>
+                                    <div ng-messages-include="app/templates/messages.html"></div>
                                 </div>
                             </div>
                         </div>
