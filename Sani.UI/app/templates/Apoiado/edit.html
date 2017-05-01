@@ -26,7 +26,7 @@
                                    class="form-control"
                                    id="nome"
                                    name="nome"
-                                   placeholder="Nome do Apoiado"
+                                   placeholder="Ex.: José dos Anzóis"
                                    required />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.nome.$error">
@@ -45,7 +45,7 @@
                                    class="form-control"
                                    id="nomeMae"
                                    name="nomeMae"
-                                   placeholder="Nome do Mãe" />
+                                   placeholder="Ex.: Maria Filisbina" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.nomeMae.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -60,7 +60,7 @@
                                    class="form-control"
                                    id="nomePai"
                                    name="nomePai"
-                                   placeholder="Nome do Pai" />
+                                   placeholder="Ex.: João Catanduva" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.nomePai.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -70,12 +70,13 @@
                         <div class="form-group" ng-class="{ 'has-error' : telefone.$invalid }">
                             <label for="telefone">Telefone</label>
                             <input ng-model="vm.apoiado.telefone"
-                                   ng-maxlength="100"
+                                   ui-mask="(99) 9999-9999"
+                                   ng-pattern='/^\([1-9]{2}\)[0-9]{4}-[0-9]{4}$/'
                                    type="text"
                                    class="form-control"
                                    id="telefone"
                                    name="telefone"
-                                   placeholder="Telefone" />
+                                   placeholder="Ex.: (11) 5555-9999" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.telefone.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -85,13 +86,13 @@
                         <div class="form-group" ng-class="{ 'has-error' : celular.$invalid }">
                             <label for="celular">Celular</label>
                             <input ng-model="vm.apoiado.celular"
-                                   ui-mask="(99) 99999-999?9"
-                                   ng-maxlength="100"
+                                   ui-mask="(99) 9?9999-9999"
+                                   ng-pattern="/^\([1-9]{2}\)[0-9]{4,5}-[0-9]{4}$/"
                                    type="text"
                                    class="form-control"
                                    id="celular"
                                    name="celular"
-                                   placeholder="Celular" />
+                                   placeholder="Ex.: (11) 95555-9999" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.celular.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -99,14 +100,14 @@
                             </div>
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : email.$invalid }">
-                            <label for="email">Endereço</label>
+                            <label for="email">E-mail</label>
                             <input ng-model="vm.apoiado.email"
                                    ng-maxlength="100"
-                                   type="text"
+                                   type="email"
                                    class="form-control"
                                    id="email"
                                    name="email"
-                                   placeholder="E-mail" />
+                                   placeholder="Ex.: exemplo@gmail.com" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.email.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -121,7 +122,7 @@
                                    class="form-control"
                                    id="logradouro"
                                    name="logradouro"
-                                   placeholder="Endereço" />
+                                   placeholder="Ex.: Rua da Paz" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.logradouro.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -136,7 +137,7 @@
                                    class="form-control"
                                    id="numeroLogradouro"
                                    name="numeroLogradouro"
-                                   placeholder="Número" />
+                                   placeholder="Ex.: 101" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.numeroLogradouro.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -151,7 +152,7 @@
                                    class="form-control"
                                    id="complementoLogradouro"
                                    name="complementoLogradouro"
-                                   placeholder="Complemento" />
+                                   placeholder="Ex.: Ap.4 Bc.5" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.complementoLogradouro.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -166,7 +167,7 @@
                                    class="form-control"
                                    id="bairro"
                                    name="bairro"
-                                   placeholder="Bairro" />
+                                   placeholder="Ex.: Jd dos Eucalíptos" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.bairro.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -181,7 +182,7 @@
                                    class="form-control"
                                    id="cidade"
                                    name="cidade"
-                                   placeholder="Cidade" />
+                                   placeholder="Ex.: Brusque" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.cidade.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -197,7 +198,7 @@
                                    class="form-control"
                                    id="uf"
                                    name="uf"
-                                   placeholder="UF" />
+                                   placeholder="Ex.: SC" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.uf.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -212,7 +213,7 @@
                                    class="form-control"
                                    id="estadoCivil"
                                    name="estadoCivil"
-                                   placeholder="Estado Civil" />
+                                   placeholder="Ex.: Casado" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.estadoCivil.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -228,7 +229,7 @@
                                    class="form-control"
                                    id="qtdeDependentes"
                                    name="qtdeDependentes"
-                                   placeholder="Qtde Dependentes" />
+                                   placeholder="Ex.: 1" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.qtdeDependentes.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -243,7 +244,7 @@
                                    class="form-control"
                                    id="dataNascimento"
                                    name="dataNascimento"
-                                   placeholder="Data de Nascimento"
+                                   placeholder="Ex.: 19/12/1964"
                                    required />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.dataNascimento.$error">
@@ -259,7 +260,7 @@
                                    class="form-control"
                                    id="ramoAtividade"
                                    name="ramoAtividade"
-                                   placeholder="Ramo Atividade" />
+                                   placeholder="Ex.: Agricultura" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.ramoAtividade.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -273,7 +274,7 @@
                                    class="form-control"
                                    id="possuiVinculoCarteira"
                                    name="possuiVinculoCarteira"
-                                   placeholder="Possui Vinculo na Carteira" />
+                                   placeholder="Ex.: Possui Vinculo na Carteira" />
                         </div>
                         <div class="form-group" ng-class="{ 'has-error' : tempoExperiencia.$invalid }">
                             <label for="tempoExperiencia">Tempo de Experiencia</label>
@@ -284,7 +285,7 @@
                                    class="form-control"
                                    id="tempoExperiencia"
                                    name="tempoExperiencia"
-                                   placeholder="Tempo de Experiencia em anos" />
+                                   placeholder="Ex.: Tempo de Experiencia em anos" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.tempoExperiencia.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
@@ -299,7 +300,7 @@
                                    class="form-control"
                                    id="observacao"
                                    name="observacao"
-                                   placeholder="Observação" />
+                                   placeholder="Ex.: Observação" />
                             <div class="alert-danger">
                                 <div ng-messages="formApoiado.observacao.$error">
                                     <div ng-messages-include="app/templates/messages.html"></div>
